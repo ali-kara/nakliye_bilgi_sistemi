@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -27,9 +26,6 @@ class _SettingsState extends State<Settings> {
 
       categories.add(category);
     }
-
-    print(categories.length);
-
     return categories;
   }
 
@@ -41,9 +37,13 @@ class _SettingsState extends State<Settings> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
             return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [CircularProgressIndicator(), Text('Loading')]);
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(),
+                Text('Loading'),
+              ],
+            );
           } else {
             return ListView.builder(
               itemCount: snapshot.data.length,

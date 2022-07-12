@@ -19,7 +19,7 @@ class _NoNetworkWidgetState extends State<NoNetworkWidget> with StateMixin {
 
     waitForScreen(() {
       _networkChange.handleNetworkChange((result) {
-        print(result);
+        //print(result);
         _updateView(result);
       });
     });

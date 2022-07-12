@@ -11,8 +11,8 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreen extends State<MapScreen> {
   late GoogleMapController googleMapController;
-  static const CameraPosition initialCameraPosition = CameraPosition(
-      target: LatLng(39.98247, 37.715), zoom: 14);
+  static const CameraPosition initialCameraPosition =
+      CameraPosition(target: LatLng(39.98247, 37.715), zoom: 14);
   Set<Marker> markers = {};
 
   @override
@@ -29,7 +29,7 @@ class _MapScreen extends State<MapScreen> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
-         Position position = await _determinePosition();
+          Position position = await _determinePosition();
           googleMapController.animateCamera(CameraUpdate.newCameraPosition(
               CameraPosition(
                   target: LatLng(position.latitude, position.longitude),

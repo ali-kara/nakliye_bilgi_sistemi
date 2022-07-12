@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import "package:flutter/material.dart";
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
+import 'package:nakliye_bilgi_sistemi/Snippets/background.dart';
+import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 
 class BarcodeScanner extends StatefulWidget {
   const BarcodeScanner({Key? key}) : super(key: key);
@@ -13,73 +14,43 @@ class BarcodeScanner extends StatefulWidget {
 }
 
 class _BarcodeScannerState extends State<BarcodeScanner> {
+  String _data = "";
+  String _data2 = "";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  _insert() async {}
+
+  _scan() async {
+    await FlutterBarcodeScanner.scanBarcode(
+            "#000000", "Vazgeç", true, ScanMode.BARCODE)
+        .then((value) => setState(() => _data = value));
+
+    _insert();
+    // FlutterBarcodeScanner.getBarcodeStreamReceiver(
+    //         '#ff6666', 'Vazgeç', true, ScanMode.BARCODE)!
+    //     .listen((value) => setState(() => _data = value));
+  }
+
   @override
   Widget build(BuildContext context) {
-    const message = 'www.floratediye.com';
-
-    final qrFutureBuilder = FutureBuilder<ui.Image>(
-      future: _loadOverlayImage(),
-      builder: (ctx, snapshot) {
-        const size = 280.0;
-        if (!snapshot.hasData) {
-          return Container(width: size, height: size);
-        }
-        return CustomPaint(
-          size: const Size.square(size),
-          painter: QrPainter(
-            data: message,
-            version: QrVersions.auto,
-            eyeStyle: const QrEyeStyle(
-              eyeShape: QrEyeShape.square,
-              color: Colors.lightGreen,
-            ),
-            dataModuleStyle: const QrDataModuleStyle(
-              dataModuleShape: QrDataModuleShape.circle,
-              color: ui.Color.fromARGB(255, 0, 0, 0),
-            ),
-            // size: 320.0,
-            embeddedImage: snapshot.data,
-            embeddedImageStyle: QrEmbeddedImageStyle(
-              size: const Size.square(60),
-            ),
+    return Scaffold(
+      backgroundColor: BACKGROUND_COLOR,
+      appBar: const BaseAppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          MaterialButton(
+            onPressed: () => _scan(),
+            child: const Text('Scan Barcode'),
           ),
-        );
-      },
+          Text(_data),
+        ],
+      ),
     );
-
-      return Material(
-        color: Colors.white,
-        child: SafeArea(
-          top: true,
-          bottom: true,
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      width: 280,
-                      child: qrFutureBuilder,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 40)
-                          .copyWith(bottom: 40),
-                  child: const Text(message),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
-
-    Future<ui.Image> _loadOverlayImage() async {
-      final completer = Completer<ui.Image>();
-      final byteData = await rootBundle.load('assets/images/logo.png');
-      ui.decodeImageFromList(byteData.buffer.asUint8List(), completer.complete);
-      return completer.future;
-    }
   }
+}
