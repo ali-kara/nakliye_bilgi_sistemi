@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/splash.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
 
 import 'Core/init/main_build.dart';
 
@@ -26,9 +28,10 @@ class MyApp extends StatelessWidget {
       title: 'Nakliye Bilgi Sistemi',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primaryColorDark: Colors.black,
+        //primarySwatch: Colors.green,
       ),
-      home: const SplashScreen(),
+      home: const LoginPage(),
       builder: MainBuild.build,
     );
   }

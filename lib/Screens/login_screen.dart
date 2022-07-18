@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Api/auth_service.dart';
+import 'package:nakliye_bilgi_sistemi/Api/auth_service.dart';
+import 'package:nakliye_bilgi_sistemi/Model/sofor.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
 
 import '../Global/Constants/_colors.dart';
@@ -27,26 +28,29 @@ class _LoginPageState extends State<LoginPage> {
     // Clean up the controller when the widget is disposed.
     userNameController.dispose();
     passwordController.dispose();
+    isLoading = false;
 
     super.dispose();
   }
 
   _login() async {
-    var data = {
-      'Email': userNameController.text,
-      'Password': passwordController.text,
-    };
+    var data = soforLogin(
+      kodu: userNameController.text,
+      parola: passwordController.text,
+    );
 
-    var res = await AuthService().Login(data);
+    var res = await AuthService().login(data);
 
-    if (res.statusCode != 401) {
+    if (res) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(
+          builder: (context) => GirisBilgi(),
+        ),
       );
     } else {
-      AlertDialog(
-        content: Text(res.body),
+      const AlertDialog(
+        content: Text("Giriş Yapılamadı."),
       );
     }
   }
@@ -133,13 +137,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: !isLoading
                           ? InkWell(
                               onTap: () async {
-                                setState(() {
-                                  isLoading = true;
-                                });
+                                _changeLoading();
                                 await _login();
-                                setState(() {
-                                  isLoading = false;
-                                });
+                                _changeLoading();
                               },
                               child: const Text(
                                 'Giriş Yap',
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                             )
-                          : const CircularProgressIndicator(),
+                          : const CircularProgressIndicator.adaptive(),
                     ),
                   ),
                 ),
@@ -162,15 +162,10 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void alert(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          content: Text(userNameController.text),
-        );
-      },
-    );
+  void _changeLoading() {
+    setState(() {
+      isLoading = !isLoading;
+    });
   }
 }
 

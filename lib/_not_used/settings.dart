@@ -1,10 +1,9 @@
-import 'dart:async';
+/* import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:nakliye_bilgi_sistemi/Global/Api/Links.dart';
-import 'package:nakliye_bilgi_sistemi/Model/category.dart';
+import 'package:nakliye_bilgi_sistemi/not_used/category.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -81,3 +80,4 @@ class DetailPage extends StatelessWidget {
     ));
   }
 }
+ */

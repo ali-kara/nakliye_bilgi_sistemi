@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
 
 typedef NetworkCallBack = void Function(NetworkResult result);
 
@@ -27,7 +28,10 @@ class NetworkChangeManager extends INetworkChangeManager {
   @override
   void handleNetworkChange(NetworkCallBack onChange) {
     _subscription = _connectivity.onConnectivityChanged.listen((event) {
-      print(event);
+      if (!kReleaseMode) {
+        // ignore: avoid_print
+        print(event);
+      }
       onChange.call(NetworkResult.checkConnectivityResult(event));
     });
   }

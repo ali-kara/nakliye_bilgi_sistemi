@@ -3,8 +3,8 @@ import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
 
 import '../Snippets/base_appbar.dart';
 import '../location.dart';
-import 'barcode_scanner.dart';
-import 'map_screen.dart';
+import '../Screens/barcode_scanner.dart';
+import '../Screens/map_screen.dart';
 
 class MyList extends StatelessWidget {
   const MyList({Key? key}) : super(key: key);

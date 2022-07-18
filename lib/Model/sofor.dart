@@ -1,22 +1,64 @@
-// ignore_for_file: non_constant_identifier_names
 class Sofor {
-  final int SoforID;
-  final String Kodu;
-  final String Adi;
-  final String Soyadi;
-  final String? Plaka;
-  final String? Sehir;
-  final String? Bolge;
-  final String Parola;
-  final String? Nakliyeci;
+  int? soforID;
+  String? kodu;
+  String? adi;
+  String? soyadi;
+  String? plaka;
+  String? sehir;
+  String? bolge;
+  String? nakliyeci;
 
-  Sofor(this.SoforID, this.Kodu, this.Adi, this.Soyadi, this.Plaka, this.Sehir,
-      this.Parola, this.Nakliyeci, this.Bolge);
+  Sofor({
+    this.soforID,
+    this.kodu,
+    this.adi,
+    this.soyadi,
+    this.plaka,
+    this.sehir,
+    this.bolge,
+    this.nakliyeci,
+  });
+
+  Sofor.fromJson(Map<String, dynamic> json) {
+    soforID = json['SoforID'];
+    kodu = json['Kodu'];
+    adi = json['Adi'];
+    soyadi = json['Soyadi'];
+    plaka = json['Plaka'];
+    sehir = json['Sehir'];
+    bolge = json['Bolge'];
+    nakliyeci = json['Nakliyeci'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['SoforID'] = soforID;
+    data['Kodu'] = kodu;
+    data['Adi'] = adi;
+    data['Soyadi'] = soyadi;
+    data['Plaka'] = plaka;
+    data['Sehir'] = sehir;
+    data['Bolge'] = bolge;
+    data['Nakliyeci'] = nakliyeci;
+    return data;
+  }
 }
 
-class SoforLogin {
-  final String Kodu;
-  final String Parola;
+class soforLogin {
+  String? kodu;
+  String? parola;
 
-  SoforLogin(this.Kodu, this.Parola);
+  soforLogin({this.kodu, this.parola});
+
+  soforLogin.fromJson(Map<String, dynamic> json) {
+    kodu = json['SoforKodu'];
+    parola = json['Parola'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['SoforKodu'] = kodu;
+    data['Parola'] = parola;
+    return data;
+  }
 }
