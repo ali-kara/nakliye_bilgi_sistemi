@@ -6,6 +6,8 @@ import 'package:nakliye_bilgi_sistemi/Model/plaka.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 
+import 'home_screen2.dart';
+
 class GirisBilgi extends StatefulWidget {
   GirisBilgi({Key? key}) : super(key: key);
 
@@ -35,17 +37,17 @@ class _GirisBilgiState extends State<GirisBilgi> {
     await bolgeGetir();
 
     Bolge? b = _bolgeler
-        ?.where((element) => element.BolgeAdi?.toUpperCase() == "SAMSUN")
+        ?.where((element) => element.bolgeAdi?.toUpperCase() == "SAMSUN")
         .first;
     Plaka? p = _plakalar
-        ?.where((element) => element.PlakaAdi?.toUpperCase() == "07FTM84")
+        ?.where((element) => element.plakaAdi?.toUpperCase() == "07FTM84")
         .first;
 
     if (b != null) {
-      selectedValueBolge = b.BolgeId;
+      selectedValueBolge = b.bolgeId;
     }
     if (p != null) {
-      selectedValuePlaka = p.PlakaId;
+      selectedValuePlaka = p.plakaId;
     }
   }
 
@@ -82,7 +84,7 @@ class _GirisBilgiState extends State<GirisBilgi> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const HomeScreen(),
+                                  builder: (context) => const HomeScreen2(),
                                 ),
                               );
                             },
@@ -134,8 +136,8 @@ class _GirisBilgiState extends State<GirisBilgi> {
       ),
       items: _plakalar?.map((plaka) {
         return DropdownMenuItem(
-          value: plaka.PlakaId,
-          child: Text(plaka.PlakaAdi.toString()),
+          value: plaka.plakaId,
+          child: Text(plaka.plakaAdi.toString()),
         );
       }).toList(),
       onChanged: (value) {
@@ -158,8 +160,8 @@ class _GirisBilgiState extends State<GirisBilgi> {
       ),
       items: _bolgeler?.map((bolge) {
         return DropdownMenuItem(
-          value: bolge.BolgeId,
-          child: Text(bolge.BolgeAdi.toString()),
+          value: bolge.bolgeId,
+          child: Text(bolge.bolgeAdi.toString()),
         );
       }).toList(),
       onChanged: (value) {

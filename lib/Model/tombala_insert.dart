@@ -25,7 +25,7 @@ class TombalaInsert {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['Barkod'] = barkod;
     data['UreticiKodu'] = ureticiKodu;
     data['Adet'] = adet;

@@ -19,10 +19,10 @@ class GirisEkraniServis implements IGirisEkraniService {
     final response = await _dio.get(PLAKA_GET);
 
     if (response.statusCode == HttpStatus.ok) {
-      final _datas = response.data;
+      final datas = response.data;
 
-      if (_datas is List) {
-        return _datas.map((e) => Plaka.fromJson(e)).toList();
+      if (datas is List) {
+        return datas.map((e) => Plaka.fromJson(e)).toList();
       }
     }
 
@@ -34,10 +34,10 @@ class GirisEkraniServis implements IGirisEkraniService {
     final response = await _dio.get(BOLGE_GET);
 
     if (response.statusCode == HttpStatus.ok) {
-      final _datas = response.data;
+      final datas = response.data;
 
-      if (_datas is List) {
-        return _datas.map((e) => Bolge.fromJson(e)).toList();
+      if (datas is List) {
+        return datas.map((e) => Bolge.fromJson(e)).toList();
       }
     }
 

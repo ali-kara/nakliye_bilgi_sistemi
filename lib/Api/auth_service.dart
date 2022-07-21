@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_links.dart';
-import 'package:nakliye_bilgi_sistemi/Global/utils/alert.dart';
 import 'package:nakliye_bilgi_sistemi/Model/sofor.dart';
 
 abstract class IAuthService {

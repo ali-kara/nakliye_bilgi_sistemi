@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
 
 import 'Core/init/main_build.dart';
 
@@ -14,10 +12,12 @@ Future<void> main() async {
 
   await Hive.initFlutter();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);

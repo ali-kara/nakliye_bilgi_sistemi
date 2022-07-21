@@ -31,7 +31,7 @@ class Sofor {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['SoforID'] = soforID;
     data['Kodu'] = kodu;
     data['Adi'] = adi;
@@ -56,7 +56,7 @@ class soforLogin {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['SoforKodu'] = kodu;
     data['Parola'] = parola;
     return data;

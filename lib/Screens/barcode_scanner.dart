@@ -1,14 +1,22 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Constants/_links.dart';
 import 'package:nakliye_bilgi_sistemi/Global/utils/alert.dart';
 import 'package:nakliye_bilgi_sistemi/Model/tombala_insert.dart';
-import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
+
+class Cameraaa {
+  Future<void> Scan() async {
+    await FlutterBarcodeScanner.scanBarcode(
+            "#000000", "Vazgeç", true, ScanMode.BARCODE)
+        .then((value) => value);
+  }
+  // FlutterBarcodeScanner.getBarcodeStreamReceiver(
+  //         '#ff6666', 'Vazgeç', true, ScanMode.BARCODE)!
+  //     .listen((value) => setState(() => _data = value));
+}
 
 class BarcodeScanner extends StatefulWidget {
   const BarcodeScanner({Key? key}) : super(key: key);
@@ -62,10 +70,13 @@ class _BarcodeScannerState extends State<BarcodeScanner> {
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Text(
-                    'Barkod Tara',
-                    style: TextStyle(
-                      fontSize: 20,
+                  child: InkWell(
+                    onTap: () => _scan(),
+                    child: const Text(
+                      'Barkod Tara',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ),
@@ -191,9 +202,10 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
 
     var service = TombalaService();
     var response = await service.insert(tombalaInsert);
-    if (response)
+    if (response) {
       alert(context, "Başarılı");
-    else
+    } else {
       alert(context, "Hata");
+    }
   }
 }

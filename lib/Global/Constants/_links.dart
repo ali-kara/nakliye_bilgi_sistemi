@@ -4,6 +4,8 @@ const String BASE_URL = "https://api.ahkersoft.com/api";
 
 const String LOGIN_URL = "/sofor/login";
 
-const String TOMBALA_INSERT = "/tombala/Insert";
 const String BOLGE_GET = "/giris/bolgegetir";
 const String PLAKA_GET = "/giris/plakagetir";
+
+const String TOMBALA_INSERT = "/tombala/insert";
+const String TOMBALA_GET = "/tombala/get";

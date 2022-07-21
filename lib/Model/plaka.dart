@@ -1,21 +1,21 @@
 class Plaka {
-  int? PlakaId;
-  String? PlakaAdi;
-  String? Aciklama;
+  int? plakaId;
+  String? plakaAdi;
+  String? aciklama;
 
-  Plaka({PlakaId, PlakaAdi, Aciklama});
+  Plaka({plakaId, plakaAdi, aciklama});
 
   Plaka.fromJson(Map<String, dynamic> json) {
-    PlakaId = json["PlakaId"];
-    PlakaAdi = json["Plaka"];
-    Aciklama = json["Aciklama"];
+    plakaId = json["PlakaId"];
+    plakaAdi = json["Plaka"];
+    aciklama = json["Aciklama"];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['PlakaId'] = PlakaId;
-    data['Plaka'] = PlakaAdi;
-    data['Aciklama'] = Aciklama;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['PlakaId'] = plakaId;
+    data['Plaka'] = plakaAdi;
+    data['Aciklama'] = aciklama;
     return data;
   }
 }

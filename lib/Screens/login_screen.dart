@@ -167,6 +167,10 @@ class _LoginPageState extends State<LoginPage> {
       isLoading = !isLoading;
     });
   }
+
+  void _Save2Hive() {
+    
+  }
 }
 
 String greeting() {
