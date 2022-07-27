@@ -1,9 +1,7 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/drawer_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/map_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 
 import '../Global/Constants/_colors.dart';
@@ -64,20 +62,20 @@ class HomeScreen extends StatelessWidget {
                     icon: Icons.info,
                   ),
                 ),
-                // InkWell(
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //         builder: (context) => const MapScreen(),
-                //       ),
-                //     );
-                //   },
-                //   child: const MyWidget(
-                //     title: 'Map',
-                //     icon: Icons.maps_home_work,
-                //   ),
-                // ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LocationScreen(),
+                      ),
+                    );
+                  },
+                  child: const MyWidget(
+                    title: 'Konum İşlemleri',
+                    icon: Icons.maps_home_work,
+                  ),
+                ),
               ]),
         ),
       ),

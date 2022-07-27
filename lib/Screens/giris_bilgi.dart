@@ -3,7 +3,6 @@ import 'package:nakliye_bilgi_sistemi/Api/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Model/bolge.dart';
 import 'package:nakliye_bilgi_sistemi/Model/plaka.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 
 import 'home_screen2.dart';
@@ -123,52 +122,74 @@ class _GirisBilgiState extends State<GirisBilgi> {
   }
 
   Widget plakaList() {
-    return DropdownButton(
-      hint: const Text(
-        "Plaka Seçiniz",
+    return Container(
+      decoration: const ShapeDecoration(
+        color: Colors.blue,
+        shape: StadiumBorder(),
       ),
-      isExpanded: true,
-      value: selectedValuePlaka,
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 20,
-        color: Colors.black87,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 30,
+        ),
+        child: DropdownButton(
+          hint: const Text(
+            "Plaka Seçiniz",
+          ),
+          isExpanded: true,
+          value: selectedValuePlaka,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Colors.black87,
+          ),
+          items: _plakalar?.map((plaka) {
+            return DropdownMenuItem(
+              value: plaka.plakaId,
+              child: Text(plaka.plakaAdi.toString()),
+            );
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              selectedValuePlaka = value;
+            });
+          },
+        ),
       ),
-      items: _plakalar?.map((plaka) {
-        return DropdownMenuItem(
-          value: plaka.plakaId,
-          child: Text(plaka.plakaAdi.toString()),
-        );
-      }).toList(),
-      onChanged: (value) {
-        setState(() {
-          selectedValuePlaka = value;
-        });
-      },
     );
   }
 
   Widget bolgeList() {
-    return DropdownButton(
-      hint: const Text("Bölge Seçiniz"),
-      isExpanded: true,
-      value: selectedValueBolge,
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 20,
-        color: Colors.black87,
+    return Container(
+      decoration: const ShapeDecoration(
+        color: Colors.blue,
+        shape: StadiumBorder(),
       ),
-      items: _bolgeler?.map((bolge) {
-        return DropdownMenuItem(
-          value: bolge.bolgeId,
-          child: Text(bolge.bolgeAdi.toString()),
-        );
-      }).toList(),
-      onChanged: (value) {
-        setState(() {
-          selectedValueBolge = value;
-        });
-      },
+      child: Padding(
+        padding: const EdgeInsets.only(
+          left: 30,
+        ),
+        child: DropdownButton(
+          hint: const Text("Bölge Seçiniz"),
+          isExpanded: true,
+          value: selectedValueBolge,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Colors.black87,
+          ),
+          items: _bolgeler?.map((bolge) {
+            return DropdownMenuItem(
+              value: bolge.bolgeId,
+              child: Text(bolge.bolgeAdi.toString()),
+            );
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              selectedValueBolge = value;
+            });
+          },
+        ),
+      ),
     );
   }
 }

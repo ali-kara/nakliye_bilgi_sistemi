@@ -3,14 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:location/location.dart';
+import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
 
 import 'Core/init/main_build.dart';
+
+Location location = Location();
 
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
 
   await Hive.initFlutter();
+
+  LocationManager(LocationService()).StartService();
 
   runApp(const MyApp());
 }

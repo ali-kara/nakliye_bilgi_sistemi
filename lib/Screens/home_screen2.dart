@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_list.dart';
 
-import 'barcode_scanner.dart';
+import 'barcode_scanner2.dart';
 
 class HomeScreen2 extends StatefulWidget {
   const HomeScreen2({Key? key}) : super(key: key);
@@ -34,15 +32,15 @@ class _TabLearnState extends State<HomeScreen2> with TickerProviderStateMixin {
             child: const Icon(Icons.qr_code),
             onPressed: () {
               //_tabController.animateTo(_MyTabViews.Home.index);
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const BarcodeScanner(),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BarcodeScanner2(),
+                ),
+              );
 
-              Cameraaa aa = Cameraaa();
-              aa.Scan();
+              // Cameraaa aa = Cameraaa();
+              // aa.Scan();
             }),
         bottomNavigationBar: BottomAppBar(
             notchMargin: _notchedValue,
@@ -59,7 +57,11 @@ class _TabLearnState extends State<HomeScreen2> with TickerProviderStateMixin {
         onTap: (int index) {},
         controller: _tabController,
         tabs: _MyTabViews.values
-            .map((e) => Tab(text: e.name.toUpperCase()))
+            .map(
+              (e) => Tab(
+                text: e.name.toUpperCase(),
+              ),
+            )
             .toList(),
         labelColor: Colors.black,
         unselectedLabelColor: Colors.blue);

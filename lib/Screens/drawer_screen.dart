@@ -14,6 +14,7 @@ class drawerScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
+          SizedBox(height: 200),
           Text(
             'Merhaba',
             style: TextStyle(
@@ -39,22 +40,9 @@ class drawerScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 25),
-          Text(
-            'Merhaba',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 25),
-          Text(
-            'Merhaba',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Spacer(),
+          Center(child: Text('v.2017.01.2')),
+          SizedBox(height: 100),
         ],
       ),
     ));

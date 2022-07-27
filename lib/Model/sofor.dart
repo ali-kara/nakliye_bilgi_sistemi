@@ -1,11 +1,26 @@
+import 'package:hive_flutter/adapters.dart';
+
+import '../Global/Constants/_hive_types.dart';
+
+part 'sofor.g.dart';
+
+@HiveType(typeId: HiveTypes.soforTypeId)
 class Sofor {
+  @HiveField(0)
   int? soforID;
+  @HiveField(1)
   String? kodu;
+  @HiveField(2)
   String? adi;
+  @HiveField(3)
   String? soyadi;
+  @HiveField(4)
   String? plaka;
+  @HiveField(5)
   String? sehir;
+  @HiveField(6)
   String? bolge;
+  @HiveField(7)
   String? nakliyeci;
 
   Sofor({
@@ -40,25 +55,6 @@ class Sofor {
     data['Sehir'] = sehir;
     data['Bolge'] = bolge;
     data['Nakliyeci'] = nakliyeci;
-    return data;
-  }
-}
-
-class soforLogin {
-  String? kodu;
-  String? parola;
-
-  soforLogin({this.kodu, this.parola});
-
-  soforLogin.fromJson(Map<String, dynamic> json) {
-    kodu = json['SoforKodu'];
-    parola = json['Parola'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['SoforKodu'] = kodu;
-    data['Parola'] = parola;
     return data;
   }
 }

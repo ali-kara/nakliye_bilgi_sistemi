@@ -5,7 +5,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Global/utils/alert.dart';
-import 'package:nakliye_bilgi_sistemi/Model/tombala_insert.dart';
+import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 
 class Cameraaa {
   Future<void> Scan() async {
@@ -27,7 +27,7 @@ class BarcodeScanner extends StatefulWidget {
 
 class _BarcodeScannerState extends State<BarcodeScanner> {
   String _data = "";
-  String _data2 = "";
+  final String _data2 = "";
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _BarcodeScannerState extends State<BarcodeScanner> {
 
   _scan() async {
     await FlutterBarcodeScanner.scanBarcode(
-            "#000000", "Vazgeç", true, ScanMode.BARCODE)
+            "#FF0000", "Vazgeç", true, ScanMode.BARCODE)
         .then((value) => setState(() => _data = value));
 
     _insert();
@@ -193,12 +193,13 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
   }
 
   Future<void> _insert() async {
-    TombalaInsert tombalaInsert = TombalaInsert();
-    tombalaInsert.adet = adetController.text;
-    tombalaInsert.ureticiKodu = ureticiKoduController.text;
-    tombalaInsert.bolge = "İZMİR";
-    tombalaInsert.plaka = "35AP0635";
-    tombalaInsert.soforKodu = "ANKİBO";
+    TombalaInsert tombalaInsert = TombalaInsert(
+      adet: adetController.text,
+      ureticiKodu: ureticiKoduController.text,
+      bolge: "İZMİR",
+      plaka: "35AP0635",
+      soforKodu: "ANKİBO",
+    );
 
     var service = TombalaService();
     var response = await service.insert(tombalaInsert);

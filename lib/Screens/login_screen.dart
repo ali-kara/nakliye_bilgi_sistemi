@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nakliye_bilgi_sistemi/Api/auth_service.dart';
-import 'package:nakliye_bilgi_sistemi/Model/sofor.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Constants/_images.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/alert.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
-
-import '../Global/Constants/_colors.dart';
-import '../Global/Constants/_images.dart';
+import 'package:nakliye_bilgi_sistemi/ViewModels/sofor_login.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -23,6 +23,23 @@ class _LoginPageState extends State<LoginPage> {
 
   //var box = await Hive.openBox('mybox');
 
+  late String appName, packageName, version = "----", buildNumber;
+
+  _LoginPageState() {
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      appName = packageInfo.appName;
+      packageName = packageInfo.packageName;
+      version = packageInfo.version;
+      buildNumber = packageInfo.buildNumber;
+    });
+  }
+
+  void _changeLoading() {
+    setState(() {
+      isLoading = !isLoading;
+    });
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -34,14 +51,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _login() async {
-    var data = soforLogin(
+    var data = SoforLogin(
       kodu: userNameController.text,
       parola: passwordController.text,
     );
 
     var res = await AuthService().login(data);
 
-    if (res) {
+    if (res.success == true) {
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -49,9 +66,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     } else {
-      const AlertDialog(
-        content: Text("Giriş Yapılamadı."),
-      );
+      alert.call(context, res.message.toString());
     }
   }
 
@@ -62,28 +77,30 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Image(
-                  image: AssetImage(LOGO),
-                ),
-                const SizedBox(height: 15),
-                Text('MERHABA ${greeting()}',
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Image(
+                    image: AssetImage(LOGO),
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    'MERHABA ${greeting()}',
                     style: GoogleFonts.bebasNeue(
                       fontSize: 42,
-                    )),
-                const SizedBox(height: 15),
-                const Text(
-                  'Sisteme Girmek için bilgilerinizi giriniz',
-                  style: TextStyle(
-                    fontSize: 18,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
+                  const SizedBox(height: 15),
+                  const Text(
+                    'Sisteme Girmek için bilgilerinizi giriniz',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  Container(
                     decoration: BoxDecoration(
                       color: Colors.blue[300],
                       border: Border.all(color: Colors.white),
@@ -100,11 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 15),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
+                  const SizedBox(height: 15),
+                  Container(
                     decoration: BoxDecoration(
                       color: Colors.blue[300],
                       border: Border.all(color: Colors.white),
@@ -123,11 +137,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 25),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
+                  const SizedBox(height: 25),
+                  Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         color: Colors.blue[700],
@@ -153,23 +164,13 @@ class _LoginPageState extends State<LoginPage> {
                           : const CircularProgressIndicator.adaptive(),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
-  }
-
-  void _changeLoading() {
-    setState(() {
-      isLoading = !isLoading;
-    });
-  }
-
-  void _Save2Hive() {
-    
   }
 }
 

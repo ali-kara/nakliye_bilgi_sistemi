@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'tombala.g.dart';
+
+@JsonSerializable()
 class NakliyeTombala {
   int? id;
   String? ureticiKodu;
@@ -26,35 +31,11 @@ class NakliyeTombala {
       this.nakliyeci,
       this.tarih});
 
-  NakliyeTombala.fromJson(Map<String, dynamic> json) {
-    id = json['Id'];
-    ureticiKodu = json['UreticiKodu'];
-    ureticiAdiSoyadi = json['UreticiAdiSoyadi'];
-    ureticiIli = json['UreticiIli'];
-    soforKodu = json['SoforKodu'];
-    plaka = json['Plaka'];
-    bolge = json['Bolge'];
-    adet = json['Adet'];
-    birimFiyat = json['BirimFiyat'];
-    toplamFiyat = json['ToplamFiyat'];
-    nakliyeci = json['Nakliyeci'];
-    tarih = json['Tarih'];
+  factory NakliyeTombala.fromJson(Map<String, dynamic> json) {
+    return _$NakliyeTombalaFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['Id'] = id;
-    data['UreticiKodu'] = ureticiKodu;
-    data['UreticiAdiSoyadi'] = ureticiAdiSoyadi;
-    data['UreticiIli'] = ureticiIli;
-    data['SoforKodu'] = soforKodu;
-    data['Plaka'] = plaka;
-    data['Bolge'] = bolge;
-    data['Adet'] = adet;
-    data['BirimFiyat'] = birimFiyat;
-    data['ToplamFiyat'] = toplamFiyat;
-    data['Nakliyeci'] = nakliyeci;
-    data['Tarih'] = tarih;
-    return data;
+    return _$NakliyeTombalaToJson(this);
   }
 }

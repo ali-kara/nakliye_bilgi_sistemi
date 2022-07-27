@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_links.dart';
 import 'package:nakliye_bilgi_sistemi/Model/tombala.dart';
-import 'package:nakliye_bilgi_sistemi/Model/tombala_get.dart';
-import 'package:nakliye_bilgi_sistemi/Model/tombala_insert.dart';
 
 import 'dart:io';
+
+import '../ViewModels/tombala_get.dart';
+import '../ViewModels/tombala_insert.dart';
 
 class TombalaService {
   final Dio _dio;

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/alert.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/show_debug.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({Key? key}) : super(key: key);
@@ -10,11 +15,37 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationState extends State<LocationScreen> {
   Location location = Location();
-  late bool _serviceEnabled;
-  late PermissionStatus _permissionGranted;
   late LocationData _locationData;
 
-  bool _isListenLocation = false, _isGetLocation = false;
+  bool _isListenLocation = false;
+  bool _isGetLocation = false;
+
+  late LocationService _locationService;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    location.enableBackgroundMode(enable: true);
+
+    _locationService = LocationService();
+
+    _getLocations();
+  }
+
+  _insert() async {
+    var model = GeoLocationInsert();
+
+    model.soforKodu = "ankibo";
+    model.latitude = _locationData.latitude;
+    model.longitude = _locationData.longitude;
+
+    var response = await _locationService.insert(model);
+    if (!response.success) {
+      alert(context, response.message ?? "");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,63 +56,46 @@ class _LocationState extends State<LocationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-                onPressed: () async {
-                  _serviceEnabled = await location.serviceEnabled();
-                  if (!_serviceEnabled) {
-                    _serviceEnabled = await location.requestService();
+              onPressed: () async {
+                LocationManager(LocationService()).AskForPermission();
 
-                    if (_serviceEnabled) return;
-                  }
+                _locationData = await location.getLocation();
 
-                  _permissionGranted = await location.hasPermission();
-                  if (_permissionGranted == PermissionStatus.denied) {
-                    _permissionGranted = await location.requestPermission();
+                _insert();
 
-                    if (_permissionGranted != PermissionStatus.granted) return;
-                  }
-
-                  _locationData = await location.getLocation();
-
-                  setState(() {
-                    _isGetLocation = true;
-                  });
-                },
-                child: const Text('Get Location')),
+                setState(() {
+                  _isGetLocation = true;
+                });
+              },
+              child: const Text('Get Location'),
+            ),
             _isGetLocation
                 ? Text(
                     'Location: ${_locationData.latitude}/${_locationData.longitude}')
                 : Container(),
             ElevatedButton(
-              onPressed: () async {
-                _serviceEnabled = await location.serviceEnabled();
-                if (!_serviceEnabled) {
-                  _serviceEnabled = await location.requestService();
+                onPressed: () async {
+                  LocationManager(LocationService()).AskForPermission();
+                },
+                child: const Text('Live Location')),
+            StreamBuilder(
+              builder: (context, snapshot) {
+                if (snapshot.connectionState != ConnectionState.waiting) {
+                  _locationData = snapshot.data as LocationData;
 
-                  if (_serviceEnabled) return;
-                }
+                  _insert();
 
-                _permissionGranted = await location.hasPermission();
-                if (_permissionGranted == PermissionStatus.denied) {
-                  _permissionGranted = await location.requestPermission();
-
-                  if (_permissionGranted != PermissionStatus.granted) return;
+                  return Text(
+                    'Location Always Change:\n ${_locationData.latitude}/${_locationData.longitude}',
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
               },
-              child: const Text('Live Location')),
-              StreamBuilder(
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState != ConnectionState.waiting) {
-                    var data = snapshot.data as LocationData;
-                    return Text(
-                        'Location Always Change:\n ${data.latitude}/${data.longitude}');
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-                stream: location.onLocationChanged,
-              ),            
+              stream: location.onLocationChanged,
+            ),
           ],
         ),
       ),
@@ -94,5 +108,10 @@ class _LocationState extends State<LocationScreen> {
       content: Text(message),
     ));
   }
-}
 
+  Future<void> _getLocations() async {
+    var res = await _locationService.getall();
+
+    ShowDebug.print(res.data);
+  }
+}
