@@ -1,67 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/settings.dart';
 
-class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
+class BaseAppBar extends StatelessWidget
+    with NavigatorManager
+    implements PreferredSizeWidget {
   final Color backgroundColor = Colors.transparent;
   final String? title;
 
-  //final AppBar appBar;
-  //final List<Widget> widgets;
-
   const BaseAppBar({Key? key, this.title}) : super(key: key);
-
-  // const BaseAppBar({Key? key, this.title, this.appBar, this.widgets})
-  //     : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor,
       elevation: 0,
-      title: Center(
-        child: Text('floratediye.com',
+      centerTitle: true,
+      title: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 10,
+        children: [
+          //const CircleAvatar(),
+          Text(
+            'floratediye.com',
             style: GoogleFonts.bungeeInline(
               textStyle: TextStyle(
+                letterSpacing: 1,
                 color: Colors.orange[900],
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
-            )),
+            ),
+          ),
+        ],
       ),
-    );
-    // Image(
-    //     image: const AssetImage('assets/images/floratediye.png'),
-    //     height: preferredSize.height),
-
-/*       actions: widgets,
-      actions: [
-        const SizedBox(
-          width: 50,
-        ),
-      ],
       actions: [
         IconButton(
-          icon: const Icon(Icons.exit_to_app),
-          onPressed: () {
-            if (Platform.isIOS) {
-              exit(0);
-            } else {
-              SystemNavigator.pop();
-            }
-          },
-        ),
+            onPressed: () {
+              navigateToWidget(context, const Settings());
+            },
+            icon: const Icon(
+              Icons.settings,
+              color: Colors.black87,
+            )),
       ],
-      leading: IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const BarcodeScanner()),
-          );
-        },
-      ), */
+    );
   }
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+
+
+
+// leading: const CircleAvatar(
+//   backgroundImage: NetworkImage(
+//       "https://avatars.githubusercontent.com/u/99508918?s=96&v=4"),
+// ),
+
+// Image(
+//     image: const AssetImage('assets/images/floratediye.png'),
+//     height: preferredSize.height),
+
+//actions: [
+// IconButton(
+//   onPressed: () {},
+//   icon: const Icon(Icons.summarize, color: Colors.black87),
+//   // backgroundImage: NetworkImage(
+//   //     "https://avatars.githubusercontent.com/u/99508918?s=96&v=4"),
+// ),
+//],

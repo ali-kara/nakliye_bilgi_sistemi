@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
-
-import '../Snippets/base_appbar.dart';
-import '../location.dart';
-import '../Screens/barcode_scanner.dart';
-import '../Screens/map_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/map_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
+import 'package:nakliye_bilgi_sistemi/location.dart';
 
 class MyList extends StatelessWidget {
   const MyList({Key? key}) : super(key: key);
@@ -47,7 +45,7 @@ class MyList extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BarcodeScanner()));
+                            builder: (context) => const LocationScreen()));
                   },
                   child: const MyWidget(
                     title: 'Barcode',
@@ -57,9 +55,11 @@ class MyList extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MapScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MapScreen(),
+                      ),
+                    );
                   },
                   child: const MyWidget(
                     title: 'Map',
@@ -95,7 +95,7 @@ class MyList extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BarcodeScanner()));
+                            builder: (context) => const LocationScreen()));
                   },
                   child: const MyListItem(
                     title: 'Barcode',

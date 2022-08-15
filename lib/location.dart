@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Utils/alert.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/show_debug.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 
@@ -17,14 +17,13 @@ class _LocationState extends State<LocationScreen> {
   Location location = Location();
   late LocationData _locationData;
 
-  bool _isListenLocation = false;
+  // bool _isListenLocation = false;
   bool _isGetLocation = false;
 
   late LocationService _locationService;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     location.enableBackgroundMode(enable: true);
@@ -43,7 +42,7 @@ class _LocationState extends State<LocationScreen> {
 
     var response = await _locationService.insert(model);
     if (!response.success) {
-      alert(context, response.message ?? "");
+      showSnackbarError(context, response.message ?? "");
     }
   }
 
@@ -102,7 +101,7 @@ class _LocationState extends State<LocationScreen> {
     );
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Message(
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> message(
       String message) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),

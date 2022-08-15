@@ -1,20 +1,24 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Api/giris_bilgi.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
+import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Model/bolge.dart';
 import 'package:nakliye_bilgi_sistemi/Model/plaka.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/main_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
-
-import 'home_screen2.dart';
+import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
 
 class GirisBilgi extends StatefulWidget {
-  GirisBilgi({Key? key}) : super(key: key);
+  const GirisBilgi({Key? key}) : super(key: key);
 
   @override
   State<GirisBilgi> createState() => _GirisBilgiState();
 }
 
-class _GirisBilgiState extends State<GirisBilgi> {
+class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
   List<Plaka>? _plakalar;
   List<Bolge>? _bolgeler;
 
@@ -53,7 +57,6 @@ class _GirisBilgiState extends State<GirisBilgi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: BACKGROUND_COLOR,
       appBar: const BaseAppBar(),
       body: Container(
         padding: const EdgeInsets.all(30),
@@ -61,34 +64,29 @@ class _GirisBilgiState extends State<GirisBilgi> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _plakalar == null
-                ? const Center(child: CircularProgressIndicator.adaptive())
-                : plakaList(),
+            _plakalar == null ? loadingWidget() : plakaList(),
             const SizedBox(height: 50),
-            _bolgeler == null
-                ? const Center(child: CircularProgressIndicator.adaptive())
-                : bolgeList(),
+            _bolgeler == null ? loadingWidget() : bolgeList(),
             const SizedBox(height: 50),
             Container(
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                  color: Colors.blue[700],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10)),
+                color: Colors.blue[700],
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Center(
                 child:
                     (selectedValueBolge != null && selectedValuePlaka != null)
                         ? InkWell(
                             onTap: () async {
-                              Navigator.push(
+                              navigateToWidgetReplace(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomeScreen2(),
-                                ),
+                                const MainScreen(),
                               );
                             },
                             child: const Text(
-                              'Koli Kabule Başla',
+                              'Kaydet',
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -96,9 +94,23 @@ class _GirisBilgiState extends State<GirisBilgi> {
                               ),
                             ),
                           )
-                        : const CircularProgressIndicator.adaptive(),
+                        : loadingWidget(),
               ),
             ),
+            const Spacer(),
+            ElevatedButton(
+                onPressed: () async {
+                  await HelperFunctions.saveUserLoggedInStatus(false);
+                  await HelperFunctions.saveUserNameSF("");
+
+                  if (!mounted) return;
+
+                  navigateToWidgetReplace(
+                    context,
+                    const LoginPage(),
+                  );
+                },
+                child: const Text('Çıkış Yap'))
           ],
         ),
       ),

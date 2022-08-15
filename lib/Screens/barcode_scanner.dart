@@ -1,22 +1,12 @@
 import 'dart:async';
 
 import "package:flutter/material.dart";
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
-import 'package:nakliye_bilgi_sistemi/Global/utils/alert.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
+import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
+import 'package:nakliye_bilgi_sistemi/Snippets/base_state.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
-
-class Cameraaa {
-  Future<void> Scan() async {
-    await FlutterBarcodeScanner.scanBarcode(
-            "#000000", "Vazgeç", true, ScanMode.BARCODE)
-        .then((value) => value);
-  }
-  // FlutterBarcodeScanner.getBarcodeStreamReceiver(
-  //         '#ff6666', 'Vazgeç', true, ScanMode.BARCODE)!
-  //     .listen((value) => setState(() => _data = value));
-}
+import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
 
 class BarcodeScanner extends StatefulWidget {
   const BarcodeScanner({Key? key}) : super(key: key);
@@ -25,34 +15,11 @@ class BarcodeScanner extends StatefulWidget {
   State<BarcodeScanner> createState() => _BarcodeScannerState();
 }
 
-class _BarcodeScannerState extends State<BarcodeScanner> {
-  String _data = "";
-  final String _data2 = "";
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  _insert() async {
-    alert(context, _data);
-  }
-
-  _scan() async {
-    await FlutterBarcodeScanner.scanBarcode(
-            "#FF0000", "Vazgeç", true, ScanMode.BARCODE)
-        .then((value) => setState(() => _data = value));
-
-    _insert();
-    // FlutterBarcodeScanner.getBarcodeStreamReceiver(
-    //         '#ff6666', 'Vazgeç', true, ScanMode.BARCODE)!
-    //     .listen((value) => setState(() => _data = value));
-  }
-
+class _BarcodeScannerState extends BaseState<BarcodeScanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: BACKGROUND_COLOR,
+      appBar: const BaseAppBar(),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -60,27 +27,8 @@ class _BarcodeScannerState extends State<BarcodeScanner> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 BarcodeInsert(),
-                const SizedBox(height: 100),
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.orange[200],
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: InkWell(
-                    onTap: () => _scan(),
-                    child: const Text(
-                      'Barkod Tara',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                ),
-                Text(_data),
               ],
             ),
           ),
@@ -91,7 +39,7 @@ class _BarcodeScannerState extends State<BarcodeScanner> {
 }
 
 class BarcodeInsert extends StatefulWidget {
-  BarcodeInsert({Key? key}) : super(key: key);
+  const BarcodeInsert({Key? key}) : super(key: key);
 
   @override
   State<BarcodeInsert> createState() => _BarcodeInsertState();
@@ -99,7 +47,6 @@ class BarcodeInsert extends StatefulWidget {
 
 class _BarcodeInsertState extends State<BarcodeInsert> {
   final ureticiKoduController = TextEditingController();
-
   final adetController = TextEditingController();
 
   var isLoading = false;
@@ -158,15 +105,17 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
           child: Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-                color: Colors.blue[700],
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(10)),
+              color: Colors.blue[700],
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Center(
-              child: !isLoading
-                  ? InkWell(
+              child: isLoading
+                  ? loadingWidget()
+                  : InkWell(
                       onTap: () async {
                         _changeLoading();
-                        _insert();
+                        await _insert();
                         _changeLoading();
                       },
                       child: const Text(
@@ -177,8 +126,7 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    )
-                  : const CircularProgressIndicator.adaptive(),
+                    ),
             ),
           ),
         ),
@@ -203,10 +151,11 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
 
     var service = TombalaService();
     var response = await service.insert(tombalaInsert);
+    if (!mounted) return;
     if (response) {
-      alert(context, "Başarılı");
+      showSnackbarSuccess(context, "Başarılı");
     } else {
-      alert(context, "Hata");
+      showSnackbarError(context, "Hata");
     }
   }
 }

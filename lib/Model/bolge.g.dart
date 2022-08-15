@@ -45,3 +45,19 @@ class BolgeAdapter extends TypeAdapter<Bolge> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Bolge _$BolgeFromJson(Map<String, dynamic> json) => Bolge(
+      bolgeId: json['bolgeId'],
+      bolgeAdi: json['bolgeAdi'],
+      aciklama: json['aciklama'],
+    );
+
+Map<String, dynamic> _$BolgeToJson(Bolge instance) => <String, dynamic>{
+      'bolgeId': instance.bolgeId,
+      'bolgeAdi': instance.bolgeAdi,
+      'aciklama': instance.aciklama,
+    };

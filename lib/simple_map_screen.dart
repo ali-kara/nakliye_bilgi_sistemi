@@ -7,15 +7,20 @@ class SimpleMapScreen extends StatefulWidget {
   const SimpleMapScreen({Key? key}) : super(key: key);
 
   @override
-  _SimpleMapScreenState createState() => _SimpleMapScreenState();
+  SimpleMapScreenState createState() => SimpleMapScreenState();
 }
 
-class _SimpleMapScreenState extends State<SimpleMapScreen> {
+class SimpleMapScreenState extends State<SimpleMapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  static const CameraPosition initialPosition = CameraPosition(target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
+  static const CameraPosition initialPosition = CameraPosition(
+      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
 
-  static const CameraPosition targetPosition = CameraPosition(target: LatLng(37.43296265331129, -122.08832357078792), zoom: 14.0, bearing: 192.0, tilt: 60);
+  static const CameraPosition targetPosition = CameraPosition(
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      zoom: 14.0,
+      bearing: 192.0,
+      tilt: 60);
 
   @override
   Widget build(BuildContext context) {

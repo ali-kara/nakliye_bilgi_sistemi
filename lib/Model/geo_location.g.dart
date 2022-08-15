@@ -42,3 +42,18 @@ class GeoLocationAdapter extends TypeAdapter<GeoLocation> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GeoLocation _$GeoLocationFromJson(Map<String, dynamic> json) => GeoLocation(
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$GeoLocationToJson(GeoLocation instance) =>
+    <String, dynamic>{
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+    };

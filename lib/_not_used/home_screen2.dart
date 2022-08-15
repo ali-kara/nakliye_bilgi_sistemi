@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/home_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/tombala_list.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/dashboard_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
 
-import 'barcode_scanner2.dart';
-
-class HomeScreen2 extends StatefulWidget {
-  const HomeScreen2({Key? key}) : super(key: key);
+class NotusedHomeScreen2 extends StatefulWidget {
+  const NotusedHomeScreen2({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen2> createState() => _TabLearnState();
+  State<NotusedHomeScreen2> createState() => _TabLearnState();
 }
 
-class _TabLearnState extends State<HomeScreen2> with TickerProviderStateMixin {
+class _TabLearnState extends State<NotusedHomeScreen2>
+    with TickerProviderStateMixin {
   late final TabController _tabController;
   final double _notchedValue = 10;
   @override
@@ -35,7 +35,7 @@ class _TabLearnState extends State<HomeScreen2> with TickerProviderStateMixin {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const BarcodeScanner2(),
+                  builder: (context) => const BarcodeScannerWithController(),
                 ),
               );
 
@@ -71,9 +71,9 @@ class _TabLearnState extends State<HomeScreen2> with TickerProviderStateMixin {
     return TabBarView(
         //physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
-        children: const [
-          HomeScreen(),
-          TombalaList(),
+        children: [
+          const DashboardScreen(),
+          TombalaListesi(),
         ]);
   }
 }

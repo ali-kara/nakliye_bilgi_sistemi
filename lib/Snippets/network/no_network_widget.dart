@@ -45,7 +45,12 @@ class _NoNetworkWidgetState extends State<NoNetworkWidget> with StateMixin {
       crossFadeState: _networkResult == NetworkResult.off
           ? CrossFadeState.showFirst
           : CrossFadeState.showSecond,
-      firstChild: Container(height: 50, color: Colors.orangeAccent),
+      firstChild: Container(
+        height: 50,
+        color: Colors.orangeAccent,
+        child:
+            const Text("İnternet Bağlantınız Yok. Bağlantınızı Kontrol Ediniz"),
+      ),
       secondChild: const SizedBox(),
     );
   }

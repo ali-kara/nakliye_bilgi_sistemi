@@ -1,9 +1,11 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import '../Global/Constants/_hive_types.dart';
 
 part 'geo_location.g.dart';
 
+@JsonSerializable()
 @HiveType(typeId: HiveTypes.geoLocationTypeId)
 class GeoLocation {
   @HiveField(0)
@@ -13,16 +15,12 @@ class GeoLocation {
 
   GeoLocation({this.latitude, this.longitude});
 
-  GeoLocation.fromJson(Map<String, dynamic> json) {
-    latitude = json['latitude'];
-    longitude = json['longitude'];
+  factory GeoLocation.fromJson(Map<String, dynamic> json) {
+    return _$GeoLocationFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['latitude'] = latitude;
-    data['longitude'] = longitude;
-    return data;
+    return _$GeoLocationToJson(this);
   }
 }
 

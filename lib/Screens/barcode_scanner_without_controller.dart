@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Utils/alert.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 
 class BarcodeScannerWithoutController extends StatefulWidget {
   const BarcodeScannerWithoutController({Key? key}) : super(key: key);
 
   @override
-  _BarcodeScannerWithoutControllerState createState() =>
-      _BarcodeScannerWithoutControllerState();
+  BarcodeScannerWithoutControllerState createState() =>
+      BarcodeScannerWithoutControllerState();
 }
 
-class _BarcodeScannerWithoutControllerState
+class BarcodeScannerWithoutControllerState
     extends State<BarcodeScannerWithoutController>
     with SingleTickerProviderStateMixin {
   String? barcode;
@@ -42,10 +42,11 @@ class _BarcodeScannerWithoutControllerState
 9,10,11,12 karakter üretici kodu */
 
     var response = await service.insert(tombalaInsert);
+    if (!mounted) return;
     if (response) {
-      alert(context, "$barkod Başarılı");
+      showSnackbarSuccess(context, "$barkod Başarılı");
     } else {
-      alert(context, "Hata");
+      showSnackbarError(context, "Hata");
     }
   }
 

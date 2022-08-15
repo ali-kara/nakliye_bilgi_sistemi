@@ -45,3 +45,19 @@ class PlakaAdapter extends TypeAdapter<Plaka> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Plaka _$PlakaFromJson(Map<String, dynamic> json) => Plaka(
+      plakaId: json['plakaId'],
+      plakaAdi: json['plakaAdi'],
+      aciklama: json['aciklama'],
+    );
+
+Map<String, dynamic> _$PlakaToJson(Plaka instance) => <String, dynamic>{
+      'plakaId': instance.plakaId,
+      'plakaAdi': instance.plakaAdi,
+      'aciklama': instance.aciklama,
+    };

@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:location/location.dart';
+
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
+import 'package:nakliye_bilgi_sistemi/Core/init/main_build.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
-
-import 'Core/init/main_build.dart';
 
 Location location = Location();
 
@@ -30,13 +31,13 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     // Exit fullscreen
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-
     return MaterialApp(
       title: 'Nakliye Bilgi Sistemi',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColorDark: Colors.black,
-        //primarySwatch: Colors.green,
+      theme: ThemeData.light().copyWith(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: BACKGROUND_COLOR,
+        primaryColor: BACKGROUND_COLOR,
       ),
       home: const LoginPage(),
       builder: MainBuild.build,

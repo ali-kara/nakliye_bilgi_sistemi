@@ -15,10 +15,10 @@ class LocationManager implements ILocationManager {
   late LocationService _locationService;
   late Location location;
 
-  late LocationData _locationData;
+  // late LocationData _locationData;
 
-  final bool _isListenLocation = false;
-  final bool _isGetLocation = false;
+  // final bool _isListenLocation = false;
+  // final bool _isGetLocation = false;
 
   LocationManager(LocationService locationService) {
     _locationService = locationService;

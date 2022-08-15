@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Utils/show_debug.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 
 import '../Global/Constants/_links.dart';
@@ -58,7 +57,7 @@ class LocationService {
       res.success = false;
       res.message = e.toString();
 
-      ShowDebug.print(res.message);
+      //ShowDebug.print(res.message);
     }
 
     return res;

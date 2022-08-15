@@ -1,9 +1,11 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import '../Global/Constants/_hive_types.dart';
 
 part 'plaka.g.dart';
 
+@JsonSerializable()
 @HiveType(typeId: HiveTypes.plakaTypeId)
 class Plaka {
   @HiveField(0)
@@ -15,17 +17,11 @@ class Plaka {
 
   Plaka({plakaId, plakaAdi, aciklama});
 
-  Plaka.fromJson(Map<String, dynamic> json) {
-    plakaId = json["PlakaId"];
-    plakaAdi = json["Plaka"];
-    aciklama = json["Aciklama"];
+  factory Plaka.fromJson(Map<String, dynamic> json) {
+    return _$PlakaFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['PlakaId'] = plakaId;
-    data['Plaka'] = plakaAdi;
-    data['Aciklama'] = aciklama;
-    return data;
+    return _$PlakaToJson(this);
   }
 }
