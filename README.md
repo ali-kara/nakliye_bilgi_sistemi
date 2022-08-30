@@ -10,6 +10,16 @@ Uygulamanın temel özellikleri
 - Manuel kayıt girdileri
 - Kullanıcı uygulama aktivite takibi
 
+
+Uygulama Flutter frameworkü ile Dart dilinde geliştirilmektedir. Cross platform bir uygulamadır. 
+
+Uygulamanın haberleştiği backend kısmı tarafımdan geliştirilmektedir. Link https://github.com/ali-kara/floratediye
+
+Uygulamada ayrıca Firebase ve Google Map servisleri kullanılmaktadır.
+
+
+
+
 ![resim1](https://user-images.githubusercontent.com/99508918/187532466-71246810-4089-48e2-b245-cf2f7e6d6775.jpeg)
 ![resim2](https://user-images.githubusercontent.com/99508918/187532472-c38aafb1-039f-4d57-af38-9ce4d5fa654f.jpeg)
 ![resim3](https://user-images.githubusercontent.com/99508918/187532480-e2f55f29-a79f-4fde-9b47-432930cbbf97.jpeg)
