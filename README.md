@@ -1,16 +1,12 @@
-# nakliye_bilgi_sistemi
+Developing since 2022 
 
-A new Flutter project.
+Nakliye Bilgi Sistemi
 
-## Getting Started
+Sahada belirli noktalarda satılmak üzere satılacak çiçeklerin üreticilerden toplanması sürecinden merkezlere teslim edilmesi sürecine kadar olan süreçteki akışın kayıt altına alınması ve takibin kolaylaşması için geliştirilen mobil uygulamadır.
 
-This project is a starting point for a Flutter application.
+Uygulamanın temek özellikleri
+- Barkod tarama özelliği ile ürünlerin hızlı teslimatı
+- Gerçek zamanlı konum takibi sayesinde anlık şoförlerin konumu ve güzergah takibi
+- 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://github.com/ali-kara/nakliye_bilgi_sistemi/blob/master/assets/photos/resim1.jpeg
