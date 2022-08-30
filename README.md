@@ -10,8 +10,8 @@ Uygulamanın temel özellikleri
 - Manuel kayıt girdileri
 - Kullanıcı uygulama aktivite takibi
 
-https://raw.githubusercontent.com/ali-kara/nakliye_bilgi_sistemi/master/assets/photos/resim2.jpeg?token=GHSAT0AAAAAABX6UZBMMNZEWCX3VAHB5LG4YYONQVA
-https://raw.githubusercontent.com/ali-kara/nakliye_bilgi_sistemi/master/assets/photos/resim2.jpeg?token=GHSAT0AAAAAABX6UZBMMNZEWCX3VAHB5LG4YYONQVA
-https://raw.githubusercontent.com/ali-kara/nakliye_bilgi_sistemi/master/assets/photos/resim3.jpeg?token=GHSAT0AAAAAABX6UZBMMQRSW7LWN7PRHAMYYYONRNA
-https://raw.githubusercontent.com/ali-kara/nakliye_bilgi_sistemi/master/assets/photos/resim4.jpeg?token=GHSAT0AAAAAABX6UZBMRBYIWVNW2RTIQ2X6YYONRSQ
-https://raw.githubusercontent.com/ali-kara/nakliye_bilgi_sistemi/master/assets/photos/resim5.jpeg?token=GHSAT0AAAAAABX6UZBNMZKRJXGBTE543VDMYYONRZA
+![resim1](https://user-images.githubusercontent.com/99508918/187532466-71246810-4089-48e2-b245-cf2f7e6d6775.jpeg)
+![resim2](https://user-images.githubusercontent.com/99508918/187532472-c38aafb1-039f-4d57-af38-9ce4d5fa654f.jpeg)
+![resim3](https://user-images.githubusercontent.com/99508918/187532480-e2f55f29-a79f-4fde-9b47-432930cbbf97.jpeg)
+![resim4](https://user-images.githubusercontent.com/99508918/187532490-1fa1b3f1-c9ea-4d0c-9d65-fd5b8ec866fe.jpeg)
+![resim5](https://user-images.githubusercontent.com/99508918/187532496-a03a73b5-f2b5-414e-b74e-bba5196cecc6.jpeg)
