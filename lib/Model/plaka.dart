@@ -9,11 +9,11 @@ part 'plaka.g.dart';
 @HiveType(typeId: HiveTypes.plakaTypeId)
 class Plaka {
   @HiveField(0)
-  int? plakaId;
+  int? PlakaId;
   @HiveField(1)
-  String? plakaAdi;
+  String? PlakaAdi;
   @HiveField(2)
-  String? aciklama;
+  String? Asciklama;
 
   Plaka({plakaId, plakaAdi, aciklama});
 

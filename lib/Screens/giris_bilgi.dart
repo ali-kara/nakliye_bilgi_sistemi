@@ -43,14 +43,14 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
         ?.where((element) => element.bolgeAdi?.toUpperCase() == "SAMSUN")
         .first;
     Plaka? p = _plakalar
-        ?.where((element) => element.plakaAdi?.toUpperCase() == "07FTM84")
+        ?.where((element) => element.PlakaAdi?.toUpperCase() == "07FTM84")
         .first;
 
     if (b != null) {
       selectedValueBolge = b.bolgeId;
     }
     if (p != null) {
-      selectedValuePlaka = p.plakaId;
+      selectedValuePlaka = p.PlakaId;
     }
   }
 
@@ -156,8 +156,8 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
           ),
           items: _plakalar?.map((plaka) {
             return DropdownMenuItem(
-              value: plaka.plakaId,
-              child: Text(plaka.plakaAdi.toString()),
+              value: plaka.PlakaId,
+              child: Text(plaka.PlakaAdi.toString()),
             );
           }).toList(),
           onChanged: (value) {
