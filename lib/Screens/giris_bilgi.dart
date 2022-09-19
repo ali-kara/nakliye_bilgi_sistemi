@@ -40,14 +40,14 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
     await bolgeGetir();
 
     Bolge? b = _bolgeler
-        ?.where((element) => element.bolgeAdi?.toUpperCase() == "SAMSUN")
+        ?.where((element) => element.BolgeAdi?.toUpperCase() == "SAMSUN")
         .first;
     Plaka? p = _plakalar
         ?.where((element) => element.PlakaAdi?.toUpperCase() == "07FTM84")
         .first;
 
     if (b != null) {
-      selectedValueBolge = b.bolgeId;
+      selectedValueBolge = b.BolgeId;
     }
     if (p != null) {
       selectedValuePlaka = p.PlakaId;
@@ -191,8 +191,8 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
           ),
           items: _bolgeler?.map((bolge) {
             return DropdownMenuItem(
-              value: bolge.bolgeId,
-              child: Text(bolge.bolgeAdi.toString()),
+              value: bolge.BolgeId,
+              child: Text(bolge.BolgeAdi.toString()),
             );
           }).toList(),
           onChanged: (value) {

@@ -29,9 +29,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Card(
                     color: Colors.lightBlue,
                     child: ListTile(
-                      leading: Icon(Icons.today_rounded),
-                      title: Text('Hello'),
-                      subtitle: Text('This is sub.'),
+                      leading: Icon(Icons.date_range_outlined),
+                      title: Text('Bugün Teslim Alınan Koli Sayısı'),
+                      subtitle: Text(
+                        '5',
+                        style: TextStyle(
+                          fontSize: 30,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),

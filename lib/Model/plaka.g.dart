@@ -1,35 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bolge.dart';
+part of 'plaka.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class BolgeAdapter extends TypeAdapter<Bolge> {
+class PlakaAdapter extends TypeAdapter<Plaka> {
   @override
-  final int typeId = 3;
+  final int typeId = 2;
 
   @override
-  Bolge read(BinaryReader reader) {
+  Plaka read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Bolge()
-      ..BolgeId = fields[0] as int?
-      ..BolgeAdi = fields[1] as String?
+    return Plaka()
+      ..PlakaId = fields[0] as int?
+      ..PlakaAdi = fields[1] as String?
       ..Aciklama = fields[2] as String?;
   }
 
   @override
-  void write(BinaryWriter writer, Bolge obj) {
+  void write(BinaryWriter writer, Plaka obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.BolgeId)
+      ..write(obj.PlakaId)
       ..writeByte(1)
-      ..write(obj.BolgeAdi)
+      ..write(obj.PlakaAdi)
       ..writeByte(2)
       ..write(obj.Aciklama);
   }
@@ -40,7 +40,7 @@ class BolgeAdapter extends TypeAdapter<Bolge> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is BolgeAdapter &&
+      other is PlakaAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -49,13 +49,13 @@ class BolgeAdapter extends TypeAdapter<Bolge> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-Bolge _$BolgeFromJson(Map<String, dynamic> json) => Bolge()
-  ..BolgeId = json['BolgeId'] as int?
-  ..BolgeAdi = json['BolgeAdi'] as String?
+Plaka _$PlakaFromJson(Map<String, dynamic> json) => Plaka()
+  ..PlakaId = json['PlakaId'] as int?
+  ..PlakaAdi = json['Plaka'] as String?
   ..Aciklama = json['Aciklama'] as String?;
 
-Map<String, dynamic> _$BolgeToJson(Bolge instance) => <String, dynamic>{
-      'BolgeId': instance.BolgeId,
-      'BolgeAdi': instance.BolgeAdi,
+Map<String, dynamic> _$PlakaToJson(Plaka instance) => <String, dynamic>{
+      'PlakaId': instance.PlakaId,
+      'Plaka': instance.PlakaAdi,
       'Aciklama': instance.Aciklama,
     };

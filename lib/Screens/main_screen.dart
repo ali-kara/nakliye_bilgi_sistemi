@@ -5,6 +5,7 @@ import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/dashboard_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/map_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
 
 class MainScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
   int selectedpage = 0;
   final _pageNo = [
     const DashboardScreen(),
-    const BarcodeScanner(),
+    const MapScreen(),
     const BarcodeScannerWithController(),
     TombalaListesi(),
     const GirisBilgi()

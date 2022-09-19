@@ -9,11 +9,11 @@ part 'bolge.g.dart';
 @HiveType(typeId: HiveTypes.bolgeTypeId)
 class Bolge {
   @HiveField(0)
-  int? bolgeId;
+  int? BolgeId;
   @HiveField(1)
-  String? bolgeAdi;
+  String? BolgeAdi;
   @HiveField(2)
-  String? aciklama;
+  String? Aciklama;
 
   Bolge({bolgeId, bolgeAdi, aciklama});
 

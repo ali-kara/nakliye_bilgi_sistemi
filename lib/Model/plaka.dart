@@ -13,7 +13,7 @@ class Plaka {
   @HiveField(1)
   String? PlakaAdi;
   @HiveField(2)
-  String? Asciklama;
+  String? Aciklama;
 
   Plaka({plakaId, plakaAdi, aciklama});
 
