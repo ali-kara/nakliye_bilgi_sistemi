@@ -17,11 +17,9 @@ Uygulamanın haberleştiği backend kısmı tarafımdan geliştirilmektedir. Lin
 
 Uygulamada ayrıca Firebase ve Google Map servisleri kullanılmaktadır.
 
-
-
-
-![resim1](https://user-images.githubusercontent.com/99508918/187532466-71246810-4089-48e2-b245-cf2f7e6d6775.jpeg)
-![resim2](https://user-images.githubusercontent.com/99508918/187532472-c38aafb1-039f-4d57-af38-9ce4d5fa654f.jpeg)
-![resim3](https://user-images.githubusercontent.com/99508918/187532480-e2f55f29-a79f-4fde-9b47-432930cbbf97.jpeg)
-![resim4](https://user-images.githubusercontent.com/99508918/187532490-1fa1b3f1-c9ea-4d0c-9d65-fd5b8ec866fe.jpeg)
-![resim5](https://user-images.githubusercontent.com/99508918/187532496-a03a73b5-f2b5-414e-b74e-bba5196cecc6.jpeg)
+![Screenshot_1663614978](https://user-images.githubusercontent.com/99508918/191097603-db1fc7c5-2f08-45e7-8b95-5a72f3874f9c.png)
+![Screenshot_1661966746](https://user-images.githubusercontent.com/99508918/191097288-ad5707a4-2f85-40a0-9d7a-d6bbe9950b43.png)
+![Screenshot_1661966793](https://user-images.githubusercontent.com/99508918/191097306-f0518024-e9c3-45eb-b599-9f9de7bf7cfa.png)
+![Screenshot_1661966774](https://user-images.githubusercontent.com/99508918/191097341-250c991b-4c5f-4f93-9c8e-fdf3e7738f40.png)
+![Screenshot_1661966778](https://user-images.githubusercontent.com/99508918/191097346-4a57b12c-4193-4c9d-b916-c91c123c46d8.png)
+![Screenshot_1661966781](https://user-images.githubusercontent.com/99508918/191097360-1a7c97ef-aa80-44bf-aaad-822848ac51b4.png)
