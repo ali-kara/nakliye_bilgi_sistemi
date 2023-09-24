@@ -1,18 +1,19 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'sofor_login.g.dart';
+
+@JsonSerializable()
 class SoforLogin {
-  String? kodu;
-  String? parola;
+  String? userName;
+  String? password;
 
-  SoforLogin({this.kodu, this.parola});
+  SoforLogin({this.userName, this.password});
 
-  SoforLogin.fromJson(Map<String, dynamic> json) {
-    kodu = json['SoforKodu'];
-    parola = json['Parola'];
+  factory SoforLogin.fromJson(Map<String, dynamic> json) {
+    return _$SoforLoginFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['SoforKodu'] = kodu;
-    data['Parola'] = parola;
-    return data;
+    return _$SoforLoginToJson(this);
   }
 }

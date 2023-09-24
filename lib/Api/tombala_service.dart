@@ -28,7 +28,8 @@ class TombalaService {
 
     var response = await _dio.post(TOMBALA_GET, data: parameter);
 
-    var data = response.data["Data"];
+    //var data = response.data["Data"];
+    var data = response.data;
 
     if (response.statusCode == HttpStatus.ok) {
       if (data is List) {

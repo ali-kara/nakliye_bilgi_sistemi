@@ -81,15 +81,15 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
     //if (currentState!.validate()) {}
 
     var data = SoforLogin(
-      kodu: userNameController.text,
-      parola: passwordController.text,
+      userName: userNameController.text,
+      password: passwordController.text,
     );
 
     var res = await AuthService().login(data);
 
     if (res.success == true) {
       await HelperFunctions.saveUserLoggedInStatus(true);
-      await HelperFunctions.saveUserNameSF(data.kodu.toString());
+      await HelperFunctions.saveUserNameSF(data.userName.toString());
       if (!mounted) return;
 
       navigateToWidgetReplace(context, const GirisBilgi());

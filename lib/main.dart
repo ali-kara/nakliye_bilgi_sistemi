@@ -5,11 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:location/location.dart';
 
-import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 import 'package:nakliye_bilgi_sistemi/Core/init/main_build.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
-import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/main_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
+
+import 'dropdown.dart';
 
 Location location = Location();
 
@@ -18,7 +19,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
 
-  LocationManager(LocationService()).StartService();
+  //LocationManager(LocationService()).StartService();
 
   runApp(const MyApp());
 }
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: BACKGROUND_COLOR,
         primaryColor: BACKGROUND_COLOR,
       ),
-      home: const LoginPage(),
+      home: const SplashScreen(),
       builder: MainBuild.build,
     );
   }

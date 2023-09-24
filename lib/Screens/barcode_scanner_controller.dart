@@ -37,9 +37,9 @@ class BarcodeScannerWithControllerState
                 controller: controller,
                 //allowDuplicates: true,
                 fit: BoxFit.fitWidth,
-                onDetect: (barcode, args) {
+                onDetect: (barcode) {
                   setState(() {
-                    this.barcode = barcode.rawValue;
+                    this.barcode = barcode.barcodes.first.rawValue;
                   });
                 },
               ),

@@ -8,7 +8,13 @@ import '../Model/servis_response.dart';
 
 class LocationService {
   final Dio _dio;
-  LocationService() : _dio = Dio(BaseOptions(baseUrl: BASE_URL));
+  LocationService()
+      : _dio = Dio(
+          BaseOptions(
+            baseUrl: BASE_URL,
+            connectTimeout: const Duration(seconds: 10),
+          ),
+        );
 
   Future<ServisResponse> insert(GeoLocationInsert model) async {
     var res = ServisResponse();

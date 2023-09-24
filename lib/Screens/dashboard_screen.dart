@@ -19,20 +19,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
           ),
-          child: Center(
+          child: const Center(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Card(
                     color: Colors.lightBlue,
                     child: ListTile(
                       leading: Icon(Icons.date_range_outlined),
                       title: Text('Bugün Teslim Alınan Koli Sayısı'),
                       subtitle: Text(
-                        '5',
+                        '15',
                         style: TextStyle(
                           fontSize: 30,
                         ),

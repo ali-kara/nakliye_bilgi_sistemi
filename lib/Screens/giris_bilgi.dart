@@ -5,7 +5,7 @@ import 'package:nakliye_bilgi_sistemi/Api/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Model/bolge.dart';
-import 'package:nakliye_bilgi_sistemi/Model/plaka.dart';
+import 'package:nakliye_bilgi_sistemi/Model/arac_plaka.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/main_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
@@ -19,7 +19,7 @@ class GirisBilgi extends StatefulWidget {
 }
 
 class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
-  List<Plaka>? _plakalar;
+  List<AracPlaka>? _plakalar;
   List<Bolge>? _bolgeler;
 
   var selectedValueBolge;
@@ -39,19 +39,20 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
     await plakaGetir();
     await bolgeGetir();
 
-    Bolge? b = _bolgeler
-        ?.where((element) => element.BolgeAdi?.toUpperCase() == "SAMSUN")
-        .first;
-    Plaka? p = _plakalar
-        ?.where((element) => element.PlakaAdi?.toUpperCase() == "07FTM84")
-        .first;
+    //Bolge? b = _bolgeler
+    //    ?.where((element) => element.bolgeAdi?.toUpperCase() == "SAMSUN")
+    //    .first;
 
-    if (b != null) {
-      selectedValueBolge = b.BolgeId;
-    }
-    if (p != null) {
-      selectedValuePlaka = p.PlakaId;
-    }
+    // AracPlaka? p = _plakalar
+    //     ?.where((element) => element.plaka?.toUpperCase() == "07FTM84")
+    //     .first;
+
+    // if (b != null) {
+    //   selectedValueBolge = b.bolgeId;
+    // }
+    // if (p != null) {
+    //   selectedValuePlaka = p.plakaId;
+    // }
   }
 
   @override
@@ -156,8 +157,8 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
           ),
           items: _plakalar?.map((plaka) {
             return DropdownMenuItem(
-              value: plaka.PlakaId,
-              child: Text(plaka.PlakaAdi.toString()),
+              value: plaka.plakaId,
+              child: Text(plaka.plaka.toString()),
             );
           }).toList(),
           onChanged: (value) {
@@ -191,8 +192,8 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
           ),
           items: _bolgeler?.map((bolge) {
             return DropdownMenuItem(
-              value: bolge.BolgeId,
-              child: Text(bolge.BolgeAdi.toString()),
+              value: bolge.bolgeId,
+              child: Text(bolge.bolgeAdi.toString()),
             );
           }).toList(),
           onChanged: (value) {

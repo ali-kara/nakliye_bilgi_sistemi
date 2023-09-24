@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Constants/_links.dart';
-import 'package:nakliye_bilgi_sistemi/Model/sofor.dart';
 
+import '../Global/Constants/_links.dart';
 import '../Model/servis_response.dart';
+import '../Model/sofor.dart';
 import '../ViewModels/sofor_login.dart';
 
 abstract class IAuthService {

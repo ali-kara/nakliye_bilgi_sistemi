@@ -30,16 +30,20 @@ class _MapScreen extends State<MapScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           Position position = await _determinePosition();
-          googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-              CameraPosition(
-                  target: LatLng(position.latitude, position.longitude),
-                  zoom: 14)));
+          googleMapController
+              .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+            target: LatLng(position.latitude, position.longitude),
+            zoom: 14,
+          )));
 
           markers.clear();
 
-          markers.add(Marker(
+          markers.add(
+            Marker(
               markerId: const MarkerId('currentLocation'),
-              position: LatLng(position.latitude, position.longitude)));
+              position: LatLng(position.latitude, position.longitude),
+            ),
+          );
 
           setState(() {});
         },

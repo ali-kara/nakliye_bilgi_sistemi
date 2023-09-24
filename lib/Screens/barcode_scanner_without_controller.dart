@@ -61,9 +61,9 @@ class BarcodeScannerWithoutControllerState
               MobileScanner(
                 fit: BoxFit.contain,
                 //allowDuplicates: false,
-                onDetect: (barcode, args) {
+                onDetect: (barcode) {
                   setState(() {
-                    this.barcode = barcode.rawValue;
+                    this.barcode = barcode.barcodes.first.rawValue;
 
                     _insert(this.barcode ?? "");
                   });
@@ -88,7 +88,7 @@ class BarcodeScannerWithoutControllerState
                               overflow: TextOverflow.fade,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline4!
+                                  .headlineMedium!
                                   .copyWith(color: Colors.white),
                             ),
                           ),

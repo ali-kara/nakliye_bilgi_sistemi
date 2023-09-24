@@ -1,27 +1,50 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'base_model.dart';
 
-import '../Global/Constants/_hive_types.dart';
-import 'package:hive_flutter/adapters.dart';
+class BolgeResponseModel extends BaseModel {
+  List<Bolge>? data;
 
-part 'bolge.g.dart';
+  BolgeResponseModel({this.data, success, message});
 
-@JsonSerializable()
-@HiveType(typeId: HiveTypes.bolgeTypeId)
-class Bolge {
-  @HiveField(0)
-  int? BolgeId;
-  @HiveField(1)
-  String? BolgeAdi;
-  @HiveField(2)
-  String? Aciklama;
-
-  Bolge({bolgeId, bolgeAdi, aciklama});
-
-  factory Bolge.fromJson(Map<String, dynamic> json) {
-    return _$BolgeFromJson(json);
+  BolgeResponseModel.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <Bolge>[];
+      json['data'].forEach((v) {
+        data!.add(Bolge.fromJson(v));
+      });
+    }
+    success = json['success'];
+    message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    return _$BolgeToJson(this);
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    data['success'] = success;
+    data['message'] = message;
+    return data;
+  }
+}
+
+class Bolge {
+  int? bolgeId;
+  String? bolgeAdi;
+  String? aciklama;
+
+  Bolge({this.bolgeId, this.bolgeAdi, this.aciklama});
+
+  Bolge.fromJson(Map<String, dynamic> json) {
+    bolgeId = json['bolgeId'];
+    bolgeAdi = json['bolgeAdi'];
+    aciklama = json['aciklama'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['bolgeId'] = bolgeId;
+    data['bolgeAdi'] = bolgeAdi;
+    data['aciklama'] = aciklama;
+    return data;
   }
 }

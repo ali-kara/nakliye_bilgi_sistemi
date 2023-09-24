@@ -1,11 +1,11 @@
 // ignore_for_file: constant_identifier_names, file_names
 
-const String BASE_URL = "https://api.ahkersoft.com/api";
+const String BASE_URL = "https://api.floratediye.com/api";
 
 const String LOGIN_URL = "/sofor/login";
 
-const String BOLGE_GET = "/giris/bolgegetir";
-const String PLAKA_GET = "/giris/plakagetir";
+const String BOLGE_GET = "/Giris/bolgegetir";
+const String PLAKA_GET = "/Giris/plakagetir";
 
 const String TOMBALA_INSERT = "/tombala/insert";
 const String TOMBALA_GET = "/tombala/get";

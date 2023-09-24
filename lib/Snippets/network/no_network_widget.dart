@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Global/Constants/_messages.dart';
 import 'network_change_manager.dart';
 
 class NoNetworkWidget extends StatefulWidget {
@@ -48,8 +49,11 @@ class _NoNetworkWidgetState extends State<NoNetworkWidget> with StateMixin {
       firstChild: Container(
         height: 50,
         color: Colors.orangeAccent,
-        child:
-            const Text("İnternet Bağlantınız Yok. Bağlantınızı Kontrol Ediniz"),
+        child: const Center(
+          child: Text(
+            NoInternetConnectionMessage,
+          ),
+        ),
       ),
       secondChild: const SizedBox(),
     );

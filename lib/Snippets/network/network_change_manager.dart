@@ -52,9 +52,11 @@ enum NetworkResult {
       case ConnectivityResult.wifi:
       case ConnectivityResult.ethernet:
       case ConnectivityResult.mobile:
+      case ConnectivityResult.vpn:
         return NetworkResult.on;
       case ConnectivityResult.none:
+      case ConnectivityResult.other:
         return NetworkResult.off;
     }
-  }
+      }
 }

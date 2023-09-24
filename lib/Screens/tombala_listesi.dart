@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Model/tombala.dart';
