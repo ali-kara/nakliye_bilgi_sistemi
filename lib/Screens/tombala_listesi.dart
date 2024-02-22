@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Model/tombala.dart';
-import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
-import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
+import '../Snippets/base_appbar.dart';
+import '../Widgets/loading_view.dart';
 
 class TombalaListesi extends StatefulWidget {
   TombalaListesi({Key? key, this.showAppBar = true}) : super(key: key);
@@ -53,12 +53,13 @@ class _TombalaListesiState extends State<TombalaListesi> {
     return FittedBox(
       fit: BoxFit.fill,
       child: DataTable(
-        dataRowHeight: 34,
+        dataRowMinHeight: 30,
         headingTextStyle: const TextStyle(
           color: Colors.black87,
           fontWeight: FontWeight.w700,
         ),
         //columnSpacing: 10,
+
         columns: _createColumns(),
         rows: _createRows(),
       ),
@@ -76,9 +77,9 @@ class _TombalaListesiState extends State<TombalaListesi> {
   List<DataRow> _createRows() {
     return list!
         .map((e) => DataRow(cells: [
-              DataCell(Text(e.UreticiKodu ?? "")),
-              DataCell(Text(e.UreticiAdiSoyadi ?? "")),
-              DataCell(Text(e.Adet?.toString() ?? "0")),
+              DataCell(Text(e.ureticiKodu ?? "")),
+              DataCell(Text(e.ureticiAdiSoyadi ?? "")),
+              DataCell(Text(e.adet?.toString() ?? "")),
             ]))
         .toList();
   }

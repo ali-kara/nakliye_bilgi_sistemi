@@ -1,4 +1,3 @@
 {
-  "cSpell.words": ["bilgi", "nakliye", "sistemi"],
-  "cmake.sourceDirectory": "${workspaceFolder}/linux"
+  "cmake.sourceDirectory": "D:/nakliye_bilgi_sistemi/linux"
 }

@@ -78,13 +78,7 @@ class BarcodeScannerWithControllerState
                         icon: ValueListenableBuilder(
                           valueListenable: controller.torchState,
                           builder: (context, state, child) {
-                            if (state == null) {
-                              return const Icon(
-                                Icons.flash_off,
-                                color: Colors.black,
-                              );
-                            }
-                            switch (state as TorchState) {
+                            switch (state) {
                               case TorchState.off:
                                 return const Icon(
                                   Icons.flash_off,
@@ -112,7 +106,7 @@ class BarcodeScannerWithControllerState
                               overflow: TextOverflow.fade,
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline2!
+                                  .displayMedium!
                                   .copyWith(
                                     color: Colors.black,
                                   ),

@@ -1,15 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.nakliye_bilgi_sistemi">   
-
-       
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-
-   <application
-        android:label="Nakliye Bilgi Sistemi"
+    
+    <application
+        android:label="nakliye_bilgi_sistemi"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -36,10 +33,5 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-
-
-       <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDlL4Aum5SlP1SBW7jUVUuMjwbbeR2tHoo"/>
-
-
-        </application>
+    </application>
 </manifest>

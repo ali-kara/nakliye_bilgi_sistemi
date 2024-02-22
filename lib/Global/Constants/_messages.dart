@@ -1,1 +1,1 @@
-const String NoInternetConnectionMessage = "İnternet Bağlantınız Yok.";
+const String noInternetConnectionMessage = "İnternet Bağlantınız Yok.";

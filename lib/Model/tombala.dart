@@ -6,32 +6,32 @@ part 'tombala.g.dart';
 
 @JsonSerializable()
 class NakliyeTombala {
-  int? Id;
-  String? UreticiKodu;
-  String? UreticiAdiSoyadi;
-  String? UreticiIli;
-  String? SoforKodu;
-  String? Plaka;
-  String? Bolge;
-  int? Adet;
-  String? BirimFiyat;
-  String? ToplamFiyat;
-  String? Nakliyeci;
-  String? Tarih;
+  int? id;
+  String? ureticiKodu;
+  String? ureticiAdiSoyadi;
+  String? ureticiIli;
+  String? soforKodu;
+  String? plaka;
+  String? bolge;
+  int? adet;
+  String? birimFiyat;
+  String? toplamFiyat;
+  String? nakliyeci;
+  String? tarih;
 
   NakliyeTombala(
-      {this.Id,
-      this.UreticiKodu,
-      this.UreticiAdiSoyadi,
-      this.UreticiIli,
-      this.SoforKodu,
-      this.Plaka,
-      this.Bolge,
-      this.Adet,
-      this.BirimFiyat,
-      this.ToplamFiyat,
-      this.Nakliyeci,
-      this.Tarih});
+      {this.id,
+      this.ureticiKodu,
+      this.ureticiAdiSoyadi,
+      this.ureticiIli,
+      this.soforKodu,
+      this.plaka,
+      this.bolge,
+      this.adet,
+      this.birimFiyat,
+      this.toplamFiyat,
+      this.nakliyeci,
+      this.tarih});
 
   factory NakliyeTombala.fromJson(Map<String, dynamic> json) {
     return _$NakliyeTombalaFromJson(json);

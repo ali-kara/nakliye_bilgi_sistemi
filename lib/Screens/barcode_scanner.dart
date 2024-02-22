@@ -18,8 +18,8 @@ class BarcodeScanner extends StatefulWidget {
 class _BarcodeScannerState extends BaseState<BarcodeScanner> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const BaseAppBar(),
+    return const Scaffold(
+      appBar: BaseAppBar(),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -27,7 +27,7 @@ class _BarcodeScannerState extends BaseState<BarcodeScanner> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 BarcodeInsert(),
               ],
             ),
@@ -112,7 +112,7 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
             child: Center(
               child: isLoading
                   ? loadingWidget()
-                  : InkWell(
+                  : GestureDetector(
                       onTap: () async {
                         _changeLoading();
                         await _insert();
@@ -145,12 +145,13 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
       adet: adetController.text,
       ureticiKodu: ureticiKoduController.text,
       bolge: "İZMİR",
-      plaka: "35AP0635",
+      plaka: "06CFM475",
       soforKodu: "ANKİBO",
+      barkod: "",
     );
 
     var service = TombalaService();
-    var response = await service.insert(tombalaInsert);
+    var response = await service.insert(tombalaInsert, context);
     if (!mounted) return;
     if (response) {
       showSnackbarSuccess(context, "Başarılı");

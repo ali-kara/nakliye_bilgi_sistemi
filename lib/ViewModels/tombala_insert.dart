@@ -16,22 +16,22 @@ class TombalaInsert {
   });
 
   TombalaInsert.fromJson(Map<String, dynamic> json) {
-    barkod = json['Barkod'];
-    ureticiKodu = json['UreticiKodu'];
-    adet = json['Adet'];
-    bolge = json['Bolge'];
-    plaka = json['Plaka'];
-    soforKodu = json['Sofor_Kodu'];
+    barkod = json['barkod'];
+    ureticiKodu = json['ureticiKodu'];
+    adet = json['adet'];
+    bolge = json['bolge'];
+    plaka = json['plaka'];
+    soforKodu = json['soforKodu'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Barkod'] = barkod;
-    data['UreticiKodu'] = ureticiKodu;
-    data['Adet'] = adet;
-    data['Bolge'] = bolge;
-    data['Plaka'] = plaka;
-    data['Sofor_Kodu'] = soforKodu;
+    data['barkod'] = barkod;
+    data['ureticiKodu'] = ureticiKodu;
+    data['adet'] = adet;
+    data['bolge'] = bolge;
+    data['plaka'] = plaka;
+    data['soforKodu'] = soforKodu;
     return data;
   }
 }

@@ -12,14 +12,14 @@ abstract class IAuthService {
 }
 
 class AuthService implements IAuthService {
-  final Dio _dio;
-  AuthService() : _dio = Dio(BaseOptions(baseUrl: BASE_URL));
+  final Dio _dio = Dio(BaseOptions(baseUrl: BASE_URL));
 
   @override
   Future<ServisResponse> login(SoforLogin soforlogin) async {
     var response = await _dio.post(
       LOGIN_URL,
       data: soforlogin,
+      options: Options(headers: {"Content-Type": "application/json"}),
     );
 
     var res = ServisResponse();
@@ -29,11 +29,11 @@ class AuthService implements IAuthService {
       return res;
     }
 
-    if (!response.data["Success"]) {
-      res.success = response.data["Success"];
-      res.message = response.data["Message"];
+    if (!response.data["success"]) {
+      res.success = response.data["success"];
+      res.message = response.data["message"];
     } else {
-      Sofor s = Sofor.fromJson(response.data['Data']);
+      Sofor s = Sofor.fromJson(response.data["data"]);
       res.data = s;
     }
 

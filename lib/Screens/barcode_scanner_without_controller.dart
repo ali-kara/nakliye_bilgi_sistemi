@@ -41,7 +41,7 @@ class BarcodeScannerWithoutControllerState
 8 karakter - 
 9,10,11,12 karakter üretici kodu */
 
-    var response = await service.insert(tombalaInsert);
+    var response = await service.insert(tombalaInsert, context);
     if (!mounted) return;
     if (response) {
       showSnackbarSuccess(context, "$barkod Başarılı");

@@ -6,7 +6,7 @@ class MyCardButton extends StatelessWidget {
   final String? title;
   final IconData? icon;
   final Widget? navigateWidget;
-  const MyCardButton(this.title, this.icon, this.navigateWidget);
+  const MyCardButton(this.title, this.icon, this.navigateWidget, {super.key});
 
   @override
   Widget build(BuildContext context) {

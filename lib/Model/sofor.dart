@@ -35,14 +35,14 @@ class Sofor {
   });
 
   Sofor.fromJson(Map<String, dynamic> json) {
-    soforID = json['SoforID'];
-    kodu = json['Kodu'];
-    adi = json['Adi'];
-    soyadi = json['Soyadi'];
-    plaka = json['Plaka'];
-    sehir = json['Sehir'];
-    bolge = json['Bolge'];
-    nakliyeci = json['Nakliyeci'];
+    soforID = json['soforID'];
+    kodu = json['kodu'];
+    adi = json['adi'];
+    soyadi = json['soyadi'];
+    plaka = json['plaka'];
+    sehir = json['sehir'];
+    bolge = json['bolge'];
+    nakliyeci = json['nakliyeci'];
   }
 
   Map<String, dynamic> toJson() {

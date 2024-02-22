@@ -168,9 +168,12 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
                         child: TextField(
                           controller: passwordController,
                           obscureText: true,
+                          cursorColor: Colors.white,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Parolanız',
+                            hintFadeDuration: Duration(seconds: 3),
+                            // prefixText: 'example@alikara.dev'
                             //labelText: "Password"
                           ),
                         ),
@@ -181,12 +184,13 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
                       height: 50,
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                          color: Colors.blue[700],
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(10)),
+                        color: Colors.blue[700],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Center(
                         child: !isLoading
-                            ? InkWell(
+                            ? GestureDetector(
                                 onTap: () async {
                                   _changeLoading();
                                   await _login();
@@ -196,7 +200,7 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
                                   btnGirisYap,
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.white,
+                                    color: ANA_MENU_BUTONLAR_ICI,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
