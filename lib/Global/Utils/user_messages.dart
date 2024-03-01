@@ -12,6 +12,8 @@ void alert(BuildContext context, String displayText) {
 }
 
 void _showSnackbar(context, color, message) {
+  ScaffoldMessenger.of(context).clearSnackBars();
+
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(

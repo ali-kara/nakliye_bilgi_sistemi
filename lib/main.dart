@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:location/location.dart';
+import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 
 import 'package:nakliye_bilgi_sistemi/Core/init/main_build.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
-
 
 Location location = Location();
 
@@ -17,13 +18,13 @@ Future<void> main() async {
 
   await Hive.initFlutter();
 
-  //LocationManager(LocationService()).StartService();
+  LocationManager(LocationService()).StartService();
 
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

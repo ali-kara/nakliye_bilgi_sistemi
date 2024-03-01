@@ -5,7 +5,7 @@ import '../Snippets/base_appbar.dart';
 import '../Widgets/loading_view.dart';
 
 class TombalaListesi extends StatefulWidget {
-  TombalaListesi({Key? key, this.showAppBar = true}) : super(key: key);
+  TombalaListesi({super.key, this.showAppBar = true});
   bool showAppBar = true;
 
   @override

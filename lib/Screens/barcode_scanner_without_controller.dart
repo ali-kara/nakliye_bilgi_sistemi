@@ -28,8 +28,8 @@ class BarcodeScannerWithoutControllerState
     TombalaInsert tombalaInsert = TombalaInsert(
         adet: "1",
         ureticiKodu: "",
-        bolge: "İZMİR",
-        plaka: "35AP0635",
+        bolge: "ANKARA",
+        plaka: "06CFM475",
         soforKodu: "ANKİBO",
         barkod: barkod);
 
