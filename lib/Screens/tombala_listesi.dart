@@ -50,19 +50,16 @@ class _TombalaListesiState extends State<TombalaListesi> {
   }
 
   Widget _createDataTable() {
-    return FittedBox(
-      fit: BoxFit.fill,
-      child: DataTable(
-        dataRowMinHeight: 30,
-        headingTextStyle: const TextStyle(
-          color: Colors.black87,
-          fontWeight: FontWeight.w700,
-        ),
-        //columnSpacing: 10,
-
-        columns: _createColumns(),
-        rows: _createRows(),
+    return DataTable(
+      dataRowMinHeight: 30,
+      headingTextStyle: const TextStyle(
+        color: Colors.black87,
+        fontWeight: FontWeight.w700,
       ),
+      //columnSpacing: 10,
+
+      columns: _createColumns(),
+      rows: _createRows(),
     );
   }
 

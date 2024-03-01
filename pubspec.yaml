@@ -51,6 +51,7 @@ dependencies:
   google_maps_flutter: ^2.5.3
   json_annotation: ^4.8.1
   json_serializable: ^6.7.1
+  workmanager: ^0.5.2
 
 dev_dependencies:
   flutter_test:
@@ -70,7 +71,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
+  # inc luded with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
