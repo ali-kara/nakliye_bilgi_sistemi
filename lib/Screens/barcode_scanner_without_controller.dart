@@ -5,7 +5,7 @@ import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 
 class BarcodeScannerWithoutController extends StatefulWidget {
-  const BarcodeScannerWithoutController({Key? key}) : super(key: key);
+  const BarcodeScannerWithoutController({super.key});
 
   @override
   BarcodeScannerWithoutControllerState createState() =>

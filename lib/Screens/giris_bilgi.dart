@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Api/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Model/bolge.dart';
 import 'package:nakliye_bilgi_sistemi/Model/arac_plaka.dart';
@@ -106,21 +107,21 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
               flex: 3,
             ),
             ElevatedButton(
-                style: ButtonStyle(),
-                onPressed: () async {
-                  await HelperFunctions.saveUserLoggedInStatus(false);
-                  await HelperFunctions.saveUserNameSF("");
+              style: const ButtonStyle(),
+              onPressed: () async {
+                await HelperFunctions.clear();
 
-                  if (mounted) {
-                    return;
-                  }
+                if (!mounted) {
+                  return;
+                }
 
-                  navigateToWidgetReplace(
-                    context,
-                    const LoginPage(),
-                  );
-                },
-                child: const Text('Çıkış Yap'))
+                navigateToWidgetReplace(
+                  context,
+                  const LoginPage(),
+                );
+              },
+              child: const Text('Çıkış Yap'),
+            )
           ],
         ),
       ),

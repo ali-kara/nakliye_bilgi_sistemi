@@ -22,7 +22,7 @@ class AuthService implements IAuthService {
       options: Options(headers: {"Content-Type": "application/json"}),
     );
 
-    var res = ServisResponse();
+    var res = ServisResponse<Sofor>();
 
     if (response.statusCode != HttpStatus.ok) {
       res.success = false;

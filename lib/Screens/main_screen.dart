@@ -3,13 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/bottom2.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/dashboard_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/map_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -23,14 +24,14 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
       ? [
           const DashboardScreen(),
           TombalaListesi(),
-          const GirisBilgi(),
+          const MyBottomSheet(),
         ]
       : [
           const DashboardScreen(),
           const MapScreen(),
           const BarcodeScannerWithController(),
           TombalaListesi(),
-          const GirisBilgi()
+          const MyBottomSheet()
         ];
 
   @override

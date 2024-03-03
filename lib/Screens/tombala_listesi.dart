@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Model/tombala.dart';
 import '../Snippets/base_appbar.dart';
@@ -41,7 +42,14 @@ class _TombalaListesiState extends State<TombalaListesi> {
           },
           child: ListView(
             children: [
-              list == null ? loadingWidget() : _createDataTable(),
+              list == null
+                  ? Padding(
+                      padding: const EdgeInsets.only(
+                        top: 300,
+                      ),
+                      child: loadingWidget(),
+                    )
+                  : _createDataTable(),
             ],
           ),
         ),

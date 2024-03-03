@@ -20,6 +20,11 @@ class HelperFunctions {
     return await sf.setString(userEmailKey, userEmail);
   }
 
+  static Future<bool> clear() async {
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    return await sf.clear();
+  }
+
   // getting the data from SF
 
   static Future<bool?> getUserLoggedInStatus() async {
@@ -37,3 +42,5 @@ class HelperFunctions {
     return sf.getString(soforKodu);
   }
 }
+
+

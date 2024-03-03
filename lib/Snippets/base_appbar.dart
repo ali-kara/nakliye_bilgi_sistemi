@@ -9,7 +9,7 @@ class BaseAppBar extends StatelessWidget
   final Color backgroundColor = Colors.transparent;
   final String? title;
 
-  const BaseAppBar({Key? key, this.title}) : super(key: key);
+  const BaseAppBar({super.key, this.title});
 
   @override
   Widget build(BuildContext context) {

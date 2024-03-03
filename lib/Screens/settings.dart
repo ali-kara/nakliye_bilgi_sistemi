@@ -4,7 +4,7 @@ import 'package:settings_ui/settings_ui.dart';
 import '../Snippets/base_appbar.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
   State<Settings> createState() => _SettingsState();

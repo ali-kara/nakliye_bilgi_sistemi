@@ -3,7 +3,7 @@ import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({Key? key}) : super(key: key);
+  const DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();

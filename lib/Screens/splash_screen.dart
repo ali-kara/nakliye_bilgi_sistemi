@@ -4,7 +4,7 @@ import 'package:nakliye_bilgi_sistemi/Global/Constants/_images.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   SplashScreenState createState() => SplashScreenState();

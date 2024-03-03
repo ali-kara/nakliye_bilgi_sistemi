@@ -6,7 +6,6 @@ import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_state.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
-import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
 
 class BarcodeScanner extends StatefulWidget {
   const BarcodeScanner({super.key});

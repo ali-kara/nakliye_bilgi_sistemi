@@ -1053,6 +1053,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.2.0"
+  work:
+    dependency: "direct main"
+    description:
+      name: work
+      sha256: "6a45176c7b053e8c0d1e92058ee906bd479138303c0e3fcbe7fa552448f1d170"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.2"
   workmanager:
     dependency: "direct main"
     description:

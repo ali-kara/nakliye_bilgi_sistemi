@@ -6,10 +6,10 @@ import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_images.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/sofor_login.dart';
 import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -52,17 +52,6 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
   //   });
   // }
 
-  late String appName, packageName, version = "----", buildNumber;
-
-  _LoginPageState() {
-    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      appName = packageInfo.appName;
-      packageName = packageInfo.packageName;
-      version = packageInfo.version;
-      buildNumber = packageInfo.buildNumber;
-    });
-  }
-
   void _changeLoading() {
     setState(() {
       isLoading = !isLoading;
@@ -92,6 +81,8 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
     if (res.success == true) {
       await HelperFunctions.saveUserLoggedInStatus(true);
       await HelperFunctions.saveUserNameSF(data.userName.toString());
+      await SoforManager.saveString(SoforManager.userBolge, 'value');
+
       if (!mounted) return;
 
       navigateToWidgetReplace(context, const GirisBilgi());
@@ -167,16 +158,21 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12),
-                        child: TextField(
+                        child: TextFormField(
                           controller: passwordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Kullanıcı Adı boş olamaz.";
+                            }
+                          },
                           obscureText: true,
-                          cursorColor: Colors.white,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Parolanız',
-                            hintFadeDuration: Duration(seconds: 3),
-                            // prefixText: 'example@alikara.dev'
-                            //labelText: "Password"
+                            errorStyle:
+                                TextStyle(fontSize: 16.0, color: Colors.white),
+                            // prefixText: 'example@alikara.dev',
+                            // labelText: "Password",
                           ),
                         ),
                       ),

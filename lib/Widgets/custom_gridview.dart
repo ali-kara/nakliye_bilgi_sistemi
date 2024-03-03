@@ -4,7 +4,7 @@ import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Widgets/mycardbutton.dart';
 
 class CustomGridView extends StatelessWidget {
-  const CustomGridView({Key? key}) : super(key: key);
+  const CustomGridView({super.key});
 
   @override
   Widget build(BuildContext context) {
