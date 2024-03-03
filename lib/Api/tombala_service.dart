@@ -11,13 +11,14 @@ import '../ViewModels/tombala_insert.dart';
 
 class TombalaService {
   final Dio _dio = Dio(BaseOptions(baseUrl: BASE_URL));
+  var header = {"Content-Type": "application/json"};
 
   Future<bool> insert(TombalaInsert model, BuildContext context) async {
     try {
       var response = await _dio.post(
         TOMBALA_INSERT,
         data: model,
-        options: Options(headers: {"Content-Type": "application/json"}),
+        options: Options(headers: header),
       );
 
       return response.data["success"];
@@ -40,7 +41,7 @@ class TombalaService {
     var response = await _dio.post(
       TOMBALA_GET,
       data: parameter,
-      options: Options(headers: {"Content-Type": "application/json"}),
+      options: Options(headers: header),
     );
 
     var data = response.data["data"];

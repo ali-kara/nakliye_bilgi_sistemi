@@ -5,13 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:location/location.dart';
+import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 
 import 'package:nakliye_bilgi_sistemi/Core/init/main_build.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
+<<<<<<< HEAD
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
+=======
+import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
+>>>>>>> 4597e3a429432e57a0630429d7e917406a8aeca1
 
 Location location = Location();
 
@@ -30,6 +36,7 @@ Future<void> main() async {
 
   await Hive.initFlutter();
 
+<<<<<<< HEAD
   // await Workmanager().initialize(
   //   callbackDispatcher,
   //   isInDebugMode: true,
@@ -43,12 +50,15 @@ Future<void> main() async {
   //   initialDelay: Duration(seconds: 2),
   //   frequency: Duration(seconds: 5),
   // );
+=======
+  LocationManager(LocationService()).StartService();
+>>>>>>> 4597e3a429432e57a0630429d7e917406a8aeca1
 
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

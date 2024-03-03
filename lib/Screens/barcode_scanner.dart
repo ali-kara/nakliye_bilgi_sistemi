@@ -9,7 +9,7 @@ import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
 
 class BarcodeScanner extends StatefulWidget {
-  const BarcodeScanner({Key? key}) : super(key: key);
+  const BarcodeScanner({super.key});
 
   @override
   State<BarcodeScanner> createState() => _BarcodeScannerState();
@@ -39,7 +39,7 @@ class _BarcodeScannerState extends BaseState<BarcodeScanner> {
 }
 
 class BarcodeInsert extends StatefulWidget {
-  const BarcodeInsert({Key? key}) : super(key: key);
+  const BarcodeInsert({super.key});
 
   @override
   State<BarcodeInsert> createState() => _BarcodeInsertState();
@@ -111,7 +111,9 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
             ),
             child: Center(
               child: isLoading
-                  ? loadingWidget()
+                  ? const FittedBox(
+                      child: CircularProgressIndicator.adaptive(),
+                    )
                   : GestureDetector(
                       onTap: () async {
                         _changeLoading();

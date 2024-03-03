@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
+import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/main_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
+import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 
 class BarcodeScannerWithController extends StatefulWidget {
-  const BarcodeScannerWithController({Key? key}) : super(key: key);
+  const BarcodeScannerWithController({super.key});
 
   @override
   BarcodeScannerWithControllerState createState() =>
@@ -17,6 +20,14 @@ class BarcodeScannerWithControllerState
     extends State<BarcodeScannerWithController>
     with SingleTickerProviderStateMixin, NavigatorManager {
   String? barcode;
+  late TombalaService service;
+
+  @override
+  void initState() {
+    super.initState();
+
+    service = TombalaService();
+  }
 
   MobileScannerController controller = MobileScannerController(
     torchEnabled: false,
@@ -25,6 +36,32 @@ class BarcodeScannerWithControllerState
   );
 
   bool isStarted = true;
+
+  Future<void> _insert(String barkod) async {
+    TombalaInsert tombalaInsert = TombalaInsert(
+        adet: "1",
+        ureticiKodu: "",
+        bolge: "İZMİR",
+        plaka: "06CFM475",
+        soforKodu: "ANKİBO",
+        barkod: barkod);
+
+    /*
+    Barkodda
+İlk 5 hane FLORA
+6. karakter - 
+7 tür (1,0)
+8 karakter - 
+9,10,11,12 karakter üretici kodu */
+
+    var response = await service.insert(tombalaInsert, context);
+    if (!mounted) return;
+    if (response) {
+      showSnackbarSuccess(context, "$barkod Başarılı");
+    } else {
+      showSnackbarError(context, "Hata");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +76,12 @@ class BarcodeScannerWithControllerState
                 fit: BoxFit.fitWidth,
                 onDetect: (barcode) {
                   setState(() {
+                    if (this.barcode != barcode.barcodes.first.rawValue) {
+                      showSnackbarSuccess(
+                          context, barcode.barcodes.first.rawValue);
+
+                      _insert(barcode.barcodes.first.rawValue.toString());
+                    }
                     this.barcode = barcode.barcodes.first.rawValue;
                   });
                 },

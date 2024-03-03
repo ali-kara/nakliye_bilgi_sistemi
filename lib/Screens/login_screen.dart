@@ -12,7 +12,7 @@ import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -36,7 +36,9 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
     var isLogin = await HelperFunctions.getUserLoggedInStatus();
 
     if (isLogin ?? false == true) {
-      navigateToWidgetReplace(context, const GirisBilgi());
+      if (mounted) {
+        navigateToWidgetReplace(context, const GirisBilgi());
+      }
     }
   }
 

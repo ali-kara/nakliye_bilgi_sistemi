@@ -5,7 +5,7 @@ import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 import 'package:nakliye_bilgi_sistemi/location.dart';
 
 class MyList extends StatelessWidget {
-  const MyList({Key? key}) : super(key: key);
+  const MyList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,8 @@ class MyList extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(10),
         child: Center(
-          child: ListView(shrinkWrap: true, // ortalamayı saglıyor
+          child: ListView(
+              shrinkWrap: true, // ortalamayı saglıyor
               children: [
                 InkWell(
                   onTap: () {
@@ -113,7 +114,7 @@ class MyWidget extends StatelessWidget {
   final String? title;
   final IconData? icon;
 
-  const MyWidget({Key? key, this.title, this.icon}) : super(key: key);
+  const MyWidget({super.key, this.title, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +143,7 @@ class MyWidget extends StatelessWidget {
 }
 
 class MyListItem extends StatelessWidget {
-  const MyListItem({Key? key, this.icon, this.title}) : super(key: key);
+  const MyListItem({super.key, this.icon, this.title});
 
   final IconData? icon;
   final String? title;

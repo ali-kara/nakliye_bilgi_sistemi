@@ -12,7 +12,7 @@ import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 import 'package:nakliye_bilgi_sistemi/Widgets/loading_view.dart';
 
 class GirisBilgi extends StatefulWidget {
-  const GirisBilgi({Key? key}) : super(key: key);
+  const GirisBilgi({super.key});
 
   @override
   State<GirisBilgi> createState() => _GirisBilgiState();
@@ -60,6 +60,8 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
     return Scaffold(
       appBar: const BaseAppBar(),
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.all(30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,16 +97,23 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
                               ),
                             ),
                           )
-                        : loadingWidget(),
+                        : FittedBox(
+                            child: loadingWidget(),
+                          ),
               ),
             ),
-            const Spacer(),
+            const Spacer(
+              flex: 3,
+            ),
             ElevatedButton(
+                style: ButtonStyle(),
                 onPressed: () async {
                   await HelperFunctions.saveUserLoggedInStatus(false);
                   await HelperFunctions.saveUserNameSF("");
 
-                  if (!mounted) return;
+                  if (mounted) {
+                    return;
+                  }
 
                   navigateToWidgetReplace(
                     context,
