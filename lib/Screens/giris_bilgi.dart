@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Api/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Model/bolge.dart';
 import 'package:nakliye_bilgi_sistemi/Model/arac_plaka.dart';

@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/main_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 
 class BarcodeScannerWithController extends StatefulWidget {

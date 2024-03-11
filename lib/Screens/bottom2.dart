@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
 
 class BottomModal2 extends StatelessWidget {
-  const BottomModal2({Key? key}) : super(key: key);
+  const BottomModal2({super.key});
 
   void _showModalBottomSheet(BuildContext context) {
     showModalBottomSheet(

@@ -164,6 +164,7 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
                             if (value!.isEmpty) {
                               return "Kullanıcı Adı boş olamaz.";
                             }
+                            return null;
                           },
                           obscureText: true,
                           decoration: const InputDecoration(

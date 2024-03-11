@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/bottom2.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/dashboard_screen.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/map_screen.dart';

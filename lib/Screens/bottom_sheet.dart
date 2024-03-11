@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
@@ -17,9 +15,9 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: GirisBilgi(),
-      bottomNavigationBar: DraggableScrollableSheetExample(),
+      // bottomNavigationBar: DraggableScrollableSheetExample(),
     );
   }
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:flutter/foundation.dart';
 import 'package:location/location.dart';
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/show_debug.dart';
@@ -34,7 +35,11 @@ class LocationManager implements ILocationManager {
       ShowDebug.print('Servis başlatıldı.');
 
       location.onLocationChanged.listen((LocationData currentLocation) {
-        Insert(currentLocation);
+        // Insert(currentLocation);
+
+        if (kDebugMode) {
+          print(currentLocation.latitude);
+        }
       });
     }
   }
