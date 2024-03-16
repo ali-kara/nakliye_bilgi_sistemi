@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/show_debug.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 
@@ -36,14 +35,14 @@ class _LocationState extends State<LocationScreen> {
   _insert() async {
     var model = GeoLocationInsert();
 
-    model.soforKodu = "ankibo";
+    model.sofor_Kodu = "ankibo";
     model.latitude = _locationData.latitude;
     model.longitude = _locationData.longitude;
 
     var response = await _locationService.insert(model);
-    if (!response.success) {
-      showSnackbarError(context, response.message ?? "");
-    }
+    // if (!response.success) {
+    //   showSnackbarError(context, response.message ?? "");
+    // }
   }
 
   @override

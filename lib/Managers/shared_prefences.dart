@@ -1,46 +1,28 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HelperFunctions {
-  static String userLoggedInKey = "LOGGEDINKEY";
-  static String soforKodu = "USERNAMEKEY";
-  static String userEmailKey = "USEREMAILKEY";
-
-  static Future<bool> saveUserLoggedInStatus(bool isUserLoggedIn) async {
+class BaseSharedPreferences {
+  static Future<bool> saveString(String key, String value) async {
     SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.setBool(userLoggedInKey, isUserLoggedIn);
+    return await sf.setString(key, value);
   }
 
-  static Future<bool> saveUserNameSF(String userName) async {
+  static Future<String?> getString(String key) async {
     SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.setString(soforKodu, userName);
+    return sf.getString(key);
   }
 
-  static Future<bool> saveUserEmailSF(String userEmail) async {
+  static Future<bool?> getBool(String key) async {
     SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.setString(userEmailKey, userEmail);
+    return sf.getBool(key);
+  }
+
+  static Future<bool> saveBool(String key, bool value) async {
+    SharedPreferences sf = await SharedPreferences.getInstance();
+    return sf.setBool(key, value);
   }
 
   static Future<bool> clear() async {
     SharedPreferences sf = await SharedPreferences.getInstance();
     return await sf.clear();
   }
-
-  // getting the data from SF
-
-  static Future<bool?> getUserLoggedInStatus() async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getBool(userLoggedInKey);
-  }
-
-  static Future<String?> getUserEmailFromSF() async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getString(userEmailKey);
-  }
-
-  static Future<String?> getUserNameFromSF() async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getString(soforKodu);
-  }
 }
-
-

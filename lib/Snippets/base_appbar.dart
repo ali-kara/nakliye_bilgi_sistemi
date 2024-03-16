@@ -38,7 +38,7 @@ class BaseAppBar extends StatelessWidget
       actions: [
         IconButton(
             onPressed: () {
-              navigateToWidget(context, const Settings());
+              navigateToWidget(context, const SettingsScreen());
             },
             icon: const Icon(
               Icons.settings,

@@ -1,61 +1,36 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
-abstract class BasePreferences {
-  static Future<bool> saveString(String key, String value) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.setString(key, value);
-  }
-
-  static Future<String?> getString(String key) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getString(key);
-  }
-
-  static Future<bool?> getBool(String key) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getBool(key);
-  }
-
-  static Future<bool> saveBool(String key, bool value) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.setBool(key, value);
-  }
-
-  static Future<bool> clear() async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.clear();
-  }
-}
+import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 
 class SoforManager {
-  static String userLoggedInKey = "LOGGEDINKEY";
-  static String soforKodu = "USERNAMEKEY";
-  static String userEmailKey = "USEREMAILKEY";
-  static String userBolge = "USERBOLGE";
-  static String userPlaka = "USERPLAKA";
+  static const String _isLoggedIn = "LOGGEDINKEY";
+  static const String _soforKodu = "USERNAMEKEY";
+  static const String _userBolge = "USERBOLGE";
+  static const String _userPlaka = "USERPLAKA";
 
-  static Future<bool> saveString(String key, String value) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.setString(key, value);
+  static get bolge => BaseSharedPreferences.getString(_userBolge);
+  static get plaka => BaseSharedPreferences.getString(_userPlaka);
+  static get soforKodu => BaseSharedPreferences.getString(_soforKodu);
+
+  static Future<bool> soforKoduKaydet(String value) {
+    return BaseSharedPreferences.saveString(_soforKodu, value);
   }
 
-  static Future<String?> getString(String key) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getString(key);
+  static Future<bool> plakaKaydet(String value) {
+    return BaseSharedPreferences.saveString(_userPlaka, value);
   }
 
-  static Future<bool?> getBool(String key) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.getBool(key);
+  static Future<bool> bolgeKaydet(String value) {
+    return BaseSharedPreferences.saveString(_userBolge, value);
   }
 
-  static Future<bool> saveBool(String key, bool value) async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return sf.setBool(key, value);
+  static Future<bool> logout() {
+    return BaseSharedPreferences.clear();
   }
 
-  static Future<bool> logout() async {
-    SharedPreferences sf = await SharedPreferences.getInstance();
-    return await sf.clear();
+  static Future<bool> saveUserLoggedInStatus(bool value) {
+    return BaseSharedPreferences.saveBool(_isLoggedIn, value);
+  }
+
+  static Future<bool> isUserLoggedIn() async {
+    return await BaseSharedPreferences.getBool(_isLoggedIn) ?? false;
   }
 }

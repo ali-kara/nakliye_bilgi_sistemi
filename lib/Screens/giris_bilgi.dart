@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Api/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Model/bolge.dart';
 import 'package:nakliye_bilgi_sistemi/Model/arac_plaka.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
@@ -39,20 +40,27 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
     await plakaGetir();
     await bolgeGetir();
 
-    //Bolge? b = _bolgeler
-    //    ?.where((element) => element.bolgeAdi?.toUpperCase() == "SAMSUN")
-    //    .first;
+    String? pp = await SoforManager.plaka;
+    String? bb = await SoforManager.bolge;
 
-    // AracPlaka? p = _plakalar
-    //     ?.where((element) => element.plaka?.toUpperCase() == "07FTM84")
-    //     .first;
+    if (pp != null) {
+      AracPlaka? p = _plakalar
+          ?.where((element) => element.plaka?.toUpperCase() == pp)
+          .first;
+      if (p != null) {
+        selectedValuePlaka = p.plakaId;
+      }
+    }
 
-    // if (b != null) {
-    //   selectedValueBolge = b.bolgeId;
-    // }
-    // if (p != null) {
-    //   selectedValuePlaka = p.plakaId;
-    // }
+    if (bb != null) {
+      Bolge? b = _bolgeler
+          ?.where((element) => element.bolgeAdi?.toUpperCase() == bb)
+          .first;
+
+      if (b != null) {
+        selectedValueBolge = b.bolgeId;
+      }
+    }
   }
 
   @override
@@ -71,35 +79,35 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
             const SizedBox(height: 50),
             _bolgeler == null ? loadingWidget() : bolgeList(),
             const SizedBox(height: 50),
-            Container(
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                color: Colors.blue[700],
-                border: Border.all(color: Colors.white),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child:
-                    (selectedValueBolge != null && selectedValuePlaka != null)
-                        ? InkWell(
-                            onTap: () async {
-                              navigateToWidgetReplace(
-                                context,
-                                const MainScreen(),
-                              );
-                            },
-                            child: const Text(
+            GestureDetector(
+              onTap: () async {
+                navigateToWidgetReplace(
+                  context,
+                  const MainScreen(),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.blue[700],
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child:
+                      (selectedValueBolge != null && selectedValuePlaka != null)
+                          ? const Text(
                               'Kaydet',
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
+                            )
+                          : FittedBox(
+                              child: loadingWidget(),
                             ),
-                          )
-                        : FittedBox(
-                            child: loadingWidget(),
-                          ),
+                ),
               ),
             ),
             const Spacer(
@@ -108,7 +116,7 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
             ElevatedButton(
               style: const ButtonStyle(),
               onPressed: () async {
-                await HelperFunctions.clear();
+                await BaseSharedPreferences.clear();
 
                 if (!mounted) {
                   return;
@@ -131,7 +139,9 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
     var res = await _girisService.getPlaka();
 
     setState(() {
-      _plakalar = res;
+      if (mounted) {
+        _plakalar = res;
+      }
     });
   }
 
@@ -139,7 +149,9 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
     var res = await _girisService.getBolge();
 
     setState(() {
-      _bolgeler = res;
+      if (mounted) {
+        _bolgeler = res;
+      }
     });
   }
 

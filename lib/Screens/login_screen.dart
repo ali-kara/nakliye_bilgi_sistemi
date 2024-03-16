@@ -5,7 +5,6 @@ import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_images.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
-import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/sofor_login.dart';
@@ -24,8 +23,6 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
   final passwordController = TextEditingController();
   final userNameController = TextEditingController();
 
-  //var box = await Hive.openBox('mybox');
-
   @override
   void initState() {
     super.initState();
@@ -33,24 +30,14 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
   }
 
   checkForLogin() async {
-    var isLogin = await HelperFunctions.getUserLoggedInStatus();
+    var isLogin = await SoforManager.isUserLoggedIn();
 
-    if (isLogin ?? false == true) {
+    if (isLogin) {
       if (mounted) {
         navigateToWidgetReplace(context, const GirisBilgi());
       }
     }
   }
-
-  // getUserLoggedInStatus() async {
-  //   await HelperFunctions.getUserLoggedInStatus().then((value) {
-  //     if (value != null) {
-  //       setState(() {
-  //         _isSignedIn = value;
-  //       });
-  //     }
-  //   });
-  // }
 
   void _changeLoading() {
     setState(() {
@@ -79,9 +66,10 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
     var res = await AuthService().login(data);
 
     if (res.success == true) {
-      await HelperFunctions.saveUserLoggedInStatus(true);
-      await HelperFunctions.saveUserNameSF(data.userName.toString());
-      await SoforManager.saveString(SoforManager.userBolge, 'value');
+      await SoforManager.saveUserLoggedInStatus(true);
+      await SoforManager.soforKoduKaydet(data.userName.toString());
+      await SoforManager.bolgeKaydet(res.data?.bolge ?? "");
+      await SoforManager.plakaKaydet(res.data?.plaka ?? "");
 
       if (!mounted) return;
 
@@ -179,34 +167,34 @@ class _LoginPageState extends State<LoginPage> with NavigatorManager {
                       ),
                     ),
                     const SizedBox(height: 25),
-                    Container(
-                      height: 50,
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Colors.blue[700],
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: !isLoading
-                            ? GestureDetector(
-                                onTap: () async {
-                                  _changeLoading();
-                                  await _login();
-                                  _changeLoading();
-                                },
-                                child: const Text(
+                    GestureDetector(
+                      onTap: () async {
+                        _changeLoading();
+                        await _login();
+                        _changeLoading();
+                      },
+                      child: Container(
+                        height: 50,
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: Colors.blue[700],
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: !isLoading
+                              ? const Text(
                                   btnGirisYap,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: ANA_MENU_BUTONLAR_ICI,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                )
+                              : FittedBox(
+                                  child: loadingWidget(),
                                 ),
-                              )
-                            : FittedBox(
-                                child: loadingWidget(),
-                              ),
+                        ),
                       ),
                     ),
                   ],

@@ -27,21 +27,21 @@ class GeoLocation {
 class GeoLocationInsert {
   double? longitude;
   double? latitude;
-  String? soforKodu;
+  String? sofor_Kodu;
 
-  GeoLocationInsert({this.longitude, this.latitude, this.soforKodu});
+  GeoLocationInsert({this.longitude, this.latitude, this.sofor_Kodu});
 
   GeoLocationInsert.fromJson(Map<String, dynamic> json) {
     longitude = json['longitude'];
     latitude = json['latitude'];
-    soforKodu = json['SoforKodu'];
+    sofor_Kodu = json['sofor_Kodu'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['longitude'] = longitude;
     data['latitude'] = latitude;
-    data['SoforKodu'] = soforKodu;
+    data['sofor_Kodu'] = sofor_Kodu;
     return data;
   }
 }

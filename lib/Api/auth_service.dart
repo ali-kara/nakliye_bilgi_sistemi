@@ -8,14 +8,15 @@ import '../Model/sofor.dart';
 import '../ViewModels/sofor_login.dart';
 
 abstract class IAuthService {
-  Future<ServisResponse> login(SoforLogin soforlogin);
+  Future<ServisResponse<Sofor>> login(SoforLogin soforlogin);
+  Future<Sofor?> login2(SoforLogin soforLogin);
 }
 
 class AuthService implements IAuthService {
   final Dio _dio = Dio(BaseOptions(baseUrl: BASE_URL));
 
   @override
-  Future<ServisResponse> login(SoforLogin soforlogin) async {
+  Future<ServisResponse<Sofor>> login(SoforLogin soforlogin) async {
     var response = await _dio.post(
       LOGIN_URL,
       data: soforlogin,
@@ -38,5 +39,27 @@ class AuthService implements IAuthService {
     }
 
     return res;
+  }
+
+  @override
+  Future<Sofor?> login2(SoforLogin soforLogin) async {
+    var res = ServisResponse<Sofor>();
+
+    var response = await _dio.post(
+      LOGIN_URL,
+      data: soforLogin,
+      options: Options(headers: {"Content-Type": "application/json"}),
+    );
+
+    var data = response.data["data"];
+
+    if (response.statusCode == HttpStatus.ok) {
+      Sofor sofor = data.map((e) => Sofor.fromJson(e));
+      res.data = sofor;
+      res.success = true;
+      res.message = response.data["message"];
+    }
+
+    return null;
   }
 }

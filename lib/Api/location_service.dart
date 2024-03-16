@@ -1,10 +1,16 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 
 import '../Global/Constants/_links.dart';
 import '../Model/servis_response.dart';
+
+
+
+
+
 
 class LocationService {
   final Dio _dio;
@@ -16,30 +22,32 @@ class LocationService {
           ),
         );
 
-  Future<ServisResponse> insert(GeoLocationInsert model) async {
+  Future<void> insert(GeoLocationInsert model) async {
     var res = ServisResponse();
 
     try {
       var response = await _dio.post(
         LOCATION_INSERT,
         data: model,
+        options: Options(headers: {"Content-Type": "application/json"}),
       );
 
-      if (response.statusCode != HttpStatus.ok) {
-        res.success = false;
-        return res;
+      if (kDebugMode) {
+        print(response.toString());
       }
+      // if (response.statusCode != HttpStatus.ok) {
+      //   res.success = false;
+      //   return res;
+      // }
 
-      if (!response.data["Success"]) {
-        res.success = response.data["Success"];
-        res.message = response.data["Message"];
-      }
+      // if (!response.data["Success"]) {
+      //   res.success = response.data["Success"];
+      //   res.message = response.data["Message"];
+      // }
     } catch (e) {
       res.success = false;
       res.message = e.toString();
     }
-
-    return res;
   }
 
   Future<ServisResponse> getall() async {
