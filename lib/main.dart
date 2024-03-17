@@ -1,24 +1,17 @@
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
+import 'package:nakliye_bilgi_sistemi/Core/init/init_operations.dart';
 import 'package:nakliye_bilgi_sistemi/Core/init/main_build.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_keys.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
 
-  await Hive.initFlutter();
-
-  if (!kIsWeb) {
-    LocationManager(LocationService()).StartService();
-  }
+  // initOperations();
 
   runApp(const MyApp());
 }

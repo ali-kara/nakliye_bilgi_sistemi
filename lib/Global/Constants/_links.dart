@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names, file_names
 
 const String BASE_URL = "https://site2.alikara.dev/api";
+
+
 const String LOGIN_URL = "/Soforler/login";
 
 const String BOLGE_GET = "/Giris/bolgegetir";
@@ -14,3 +16,5 @@ const String LOCATION_INSERT = "/Location/insert";
 const String LOCATION_GET = "/Location/getLocation";
 
 const String GET_VERSION = "/Version/getAppVersion";
+
+const String CHECK_APP_HEALTH = "/SystemState/getSystemHealth";

@@ -1,6 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:nakliye_bilgi_sistemi/Core/init/init_operations.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
@@ -37,6 +38,8 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    initOperations();
   }
 
   @override

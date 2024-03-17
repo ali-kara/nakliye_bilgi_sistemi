@@ -1,25 +1,31 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "nakliye_bilgi_sistemi",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "nakliye_bilgi_sistemi (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "nakliye_bilgi_sistemi (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "nakliye_bilgi_sistemi",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "nakliye_bilgi_sistemi (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "nakliye_bilgi_sistemi (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "Flutter (lib\\Screens\\splash_screen.dart)",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib\\Screens\\splash_screen.dart"
+    }
+  ]
 }

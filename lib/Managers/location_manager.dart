@@ -41,7 +41,7 @@ class LocationManager implements ILocationManager {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
     final SnackBar snackBar = SnackBar(
-      content: Text(androidInfo.model + " " + androidInfo.device),
+      content: Text(androidInfo.model + " " + androidInfo.id),
       backgroundColor: Colors.green,
       duration: const Duration(seconds: 5),
       action: SnackBarAction(
