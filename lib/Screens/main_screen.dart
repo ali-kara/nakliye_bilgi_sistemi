@@ -6,7 +6,7 @@ import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/dashboard_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/map_screen.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/in_app_messaging.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
 
 class MainScreen extends StatefulWidget {
@@ -28,15 +28,18 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
         ]
       : [
           const DashboardScreen(),
-          const MapScreen(),
-          const BarcodeScannerWithController(),
           TombalaListesi(),
+          const BarcodeScannerWithController(),
+          // const MapScreen(),
+          // const Center(
+          //     child: Text('Bu Özellik Yeni Sürümde Eklenecektir.',
+          //         style: TextStyle(fontSize: 16))),
+          const InAppMessaging(),
           const MyBottomSheet()
         ];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     initOperations();
@@ -85,16 +88,17 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
             title: 'Ana Ekran',
           ),
           TabItem(
-            icon: Icons.map,
-            title: 'Harita',
+            icon: Icons.list,
+            title: 'Liste',
           ),
           TabItem(
               icon: Icons.camera_alt_outlined,
               title: 'Kamera',
               isIconBlend: false),
           TabItem(
-            icon: Icons.info_outline,
-            title: 'Liste',
+            icon: Icons.location_on,
+            title: 'Harita',
+            activeIcon: Icons.location_pin,
           ),
           TabItem(
             icon: Icons.people,

@@ -1,16 +1,24 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_keys.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Model/device_model.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 import 'dart:async';
 
+// import 'package:permission_handler/permission_handler.dart';
+
 abstract class ILocationManager {
   Future<void> StartService();
+  Future<void> StopService();
   void Insert(LocationData location);
   Future<bool> AskForPermission();
 }
@@ -18,14 +26,12 @@ abstract class ILocationManager {
 class LocationManager implements ILocationManager {
   late LocationService _locationService;
   late Location location;
+  static late Timer timerPeriodic;
+  static bool isPeriodicSendEnabled = false;
+  static late DeviceModel deviceModel;
 
-  // late LocationData _locationData;
-
-  // final bool _isListenLocation = false;
-  // final bool _isGetLocation = false;
-
-  LocationManager(LocationService locationService) {
-    _locationService = locationService;
+  LocationManager() {
+    _locationService = LocationService();
     location = Location();
 
     // location.changeSettings(interval: 10000, distanceFilter: 1);
@@ -35,72 +41,84 @@ class LocationManager implements ILocationManager {
     );
     location.enableBackgroundMode(enable: true);
   }
+
   Future<void> GetDeviceInfo() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    deviceModel = DeviceModel();
+    var info;
+    if (Platform.isIOS) {
+      IosDeviceInfo info = await deviceInfo.iosInfo;
+      deviceModel.model = info.model;
+      deviceModel.serialNo = info.identifierForVendor;
+    } else if (Platform.isAndroid) {
+      AndroidDeviceInfo info = await deviceInfo.androidInfo;
+      deviceModel.model = info.model;
+      deviceModel.serialNo = info.serialNumber;
+    }
 
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-
-    final SnackBar snackBar = SnackBar(
-      content: Text(androidInfo.model + " " + androidInfo.id),
-      backgroundColor: Colors.green,
-      duration: const Duration(seconds: 5),
-      action: SnackBarAction(
-        label: "OK",
-        onPressed: () {
-          //showSnackbar(context, color, "sadasd");
-        },
-        textColor: Colors.white,
-      ),
-      showCloseIcon: true,
-    );
-    snackbarKey.currentState?.showSnackBar(snackBar);
+    inspect(info);
   }
 
   void SendLocation() {
-    Timer.periodic(Duration(seconds: 10), (timer) async {
-      var data = await location.getLocation();
+    timerPeriodic = Timer.periodic(
+      const Duration(seconds: 10),
+      (timer) async {
+        var data = await location.getLocation();
 
-      var model = GeoLocationInsert(
-        sofor_Kodu: "ankibo",
-        latitude: data.latitude,
-        longitude: data.longitude,
-      );
+        var model = GeoLocationInsert(
+          sofor_Kodu: await SoforManager.soforKodu,
+          soforSessionId: await SoforManager.sessionId,
+          latitude: data.latitude,
+          longitude: data.longitude,
+        );
 
-      _locationService.insert(model);
+        _locationService.insert(model);
 
-      final SnackBar snackBar = SnackBar(
-        content: Text(model.toJson().toString() + " gönderildi"),
-        backgroundColor: Colors.green,
-        duration: const Duration(seconds: 5),
-        action: SnackBarAction(
-          label: "OK",
-          onPressed: () {
-            //showSnackbar(context, color, "sadasd");
-          },
-          textColor: Colors.white,
-        ),
-        showCloseIcon: true,
-      );
-      snackbarKey.currentState?.showSnackBar(snackBar);
-    });
+        if (isPeriodicSendEnabled == false) {
+          timer.cancel();
+        }
+
+        final SnackBar snackBar = SnackBar(
+          content: Text("${model.toJson()} gönderildi"),
+          backgroundColor: Colors.green,
+          duration: const Duration(seconds: 5),
+          action: SnackBarAction(
+            label: "OK",
+            onPressed: () {
+              //showSnackbar(context, color, "sadasd");
+            },
+            textColor: Colors.white,
+          ),
+          showCloseIcon: false,
+        );
+        snackbarKey.currentState?.showSnackBar(snackBar);
+      },
+    );
+  }
+
+  @override
+  Future<void> StopService() async {
+    isPeriodicSendEnabled = false;
   }
 
   @override
   Future<void> StartService() async {
     bool res = await AskForPermission();
     if (res) {
-      // ShowDebug.print('Servis başlatıldı.');
+      debugPrint('Servis başlatıldı.');
 
-      //SendLocation();
+      isPeriodicSendEnabled = true;
+      SendLocation();
       await GetDeviceInfo();
-      print('Servis Baslatıldı');
 
-      final SnackBar snackBar = SnackBar(
-        content: Text("Servis Baslatıldı"),
-        backgroundColor: Colors.white,
-        showCloseIcon: true,
-      );
-      snackbarKey.currentState?.showSnackBar(snackBar);
+      debugPrint('Servis Baslatıldı');
+
+      // const SnackBar snackBar = SnackBar(
+      //   content: Text("Servis Baslatıldı"),
+      //   backgroundColor: Colors.white,
+      //   showCloseIcon: true,
+      // );
+      // snackbarKey.currentState?.showSnackBar(snackBar);
 
       // location.onLocationChanged.listen((LocationData currentLocation) {
       //   Insert(currentLocation);
@@ -115,17 +133,15 @@ class LocationManager implements ILocationManager {
   }
 
   @override
-  void Insert(LocationData location) {
+  Future<void> Insert(LocationData location) async {
     var model = GeoLocationInsert(
-      sofor_Kodu: "ankibo",
+      sofor_Kodu: await SoforManager.soforKodu,
+      
       latitude: location.latitude,
       longitude: location.longitude,
     );
 
-    var response = _locationService.insert(model);
-    // if (!response.success) {
-    //   //alert(context, response.message ?? "");
-    // }
+    _locationService.insert(model);
   }
 
   @override
@@ -134,18 +150,55 @@ class LocationManager implements ILocationManager {
 
     if (!serviceEnabled) {
       serviceEnabled = await location.requestService();
-
-      if (serviceEnabled) return true;
     }
 
     PermissionStatus permissionGranted = await location.hasPermission();
 
-    if (permissionGranted == PermissionStatus.denied) {
+    if (permissionGranted != PermissionStatus.granted) {
+      return true;
+    } else if (permissionGranted == PermissionStatus.denied) {
       permissionGranted = await location.requestPermission();
-
-      if (permissionGranted != PermissionStatus.granted) return true;
     }
 
     return true;
   }
+
+  // Future<void> _checkLocationPermission() async {
+  //   final status = await Permission.location.status;
+  //   if (status.isDenied) {
+  //     final bool isPermanentlyDenied =
+  //         await Permission.location.isPermanentlyDenied;
+  //     if (isPermanentlyDenied) {
+  //       _showPermissionDialog();
+  //     } else {
+  //       await Permission.location.request();
+  //       _checkLocationPermission(); // Check permission again after request
+  //     }
+  //   } else if (status.isGranted) {
+  //     // Permission is granted, proceed with location functionality
+  //     _getCurrentLocation();
+  //   }
+  // }
+
+  // void _showPermissionDialog() {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Location Permission Required'),
+  //         content: Text(
+  //             'Please enable location permissions in settings to use this feature.'),
+  //         actions: <Widget>[
+  //           FlatButton(
+  //             child: Text('Open Settings'),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //               openAppSettings(); // Open app settings
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }

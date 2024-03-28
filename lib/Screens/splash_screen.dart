@@ -1,13 +1,12 @@
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nakliye_bilgi_sistemi/Api/app_health_check_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_images.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/login_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,8 +18,10 @@ class SplashScreen extends StatefulWidget {
 class SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late AnimationController _controller;
-  bool requestComplete = false;
   late AppHealthCheckService appHealthService;
+
+  bool appAvailable = false;
+  bool noForcedUpdate = false;
 
   @override
   void initState() {
@@ -35,7 +36,13 @@ class SplashScreenState extends State<SplashScreen>
     checkForConnection();
   }
 
-  showDialog(String Message) {
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  showDialog(String message, {String okMessage = "Tekrar Dene"}) {
     AwesomeDialog(
       context: context,
       dialogType: DialogType.noHeader,
@@ -59,9 +66,9 @@ class SplashScreenState extends State<SplashScreen>
       headerAnimationLoop: false,
       animType: AnimType.bottomSlide,
       title: 'Bilgi',
-      desc: Message,
+      desc: message,
       showCloseIcon: false,
-      btnOkText: 'Tekrar Dene',
+      btnOkText: okMessage,
       btnCancelText: 'Kapat',
       btnCancelOnPress: () {
         exit(0);
@@ -72,18 +79,90 @@ class SplashScreenState extends State<SplashScreen>
     ).show();
   }
 
-  Future<void> checkForConnection() async {
-    var response = await appHealthService.getAppHealth(context);
+  showDialog2(String message, {String okMessage = "Tekrar Dene"}) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.noHeader,
+      borderSide: const BorderSide(
+        color: Colors.transparent,
+        width: 2,
+      ),
+      width: MediaQuery.of(context).size.width,
+      buttonsBorderRadius: const BorderRadius.all(
+        Radius.circular(20),
+      ),
+      dismissOnTouchOutside: false,
+      dismissOnBackKeyPress: false,
+      onDismissCallback: (type) {
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: Text('Dismissed by $type'),
+        //   ),
+        // );
+      },
+      headerAnimationLoop: false,
+      animType: AnimType.bottomSlide,
+      title: 'Bilgi',
+      desc: message,
+      showCloseIcon: false,
+      btnOkText: okMessage,
+      btnCancelText: 'Kapat',
+      btnCancelOnPress: () {
+        exit(0);
+      },
+      btnOkOnPress: () async {
+        final Uri url = Uri.parse('https://flutter.dev');
+        if (!await launchUrl(url)) {
+          throw Exception('Could not launch $url');
+        } else {
+          checkForConnection();
+        }
+      },
+    ).show();
+  }
 
+  void checkForNavigation() {
+    if (appAvailable && noForcedUpdate) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+      );
+    }
+  }
+
+  Future<void> checkForAppVersion() async {
+    var response = await appHealthService.checkAppVersion(context);
     if (response != null) {
-      if (response.isActive != true) {
-        showDialog(response.description.toString());
+      if (response.data?.isForcedUpdate == true) {
+        showDialog2(response.message.toString(), okMessage: 'Güncelle');
       } else {
         setState(() {
-          requestComplete = true;
+          noForcedUpdate = true;
         });
       }
     }
+  }
+
+  Future<void> checkAppAvailability() async {
+    var response = await appHealthService.getAppHealth(context);
+    if (response != null) {
+      if (response.isActive == true) {
+        setState(() {
+          appAvailable = true;
+        });
+      } else {
+        showDialog(response.description.toString());
+      }
+    }
+  }
+
+  Future<void> checkForConnection() async {
+    await checkAppAvailability();
+    await checkForAppVersion();
+
+    checkForNavigation();
   }
 
   @override
@@ -99,16 +178,7 @@ class SplashScreenState extends State<SplashScreen>
             ..duration = composition.duration
             ..forward().whenComplete(
               () {
-                if (!requestComplete) {
-                  _controller.repeat();
-                } else {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
-                  );
-                }
+                _controller.repeat();
               },
             );
         },

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "198769536800",
+    "project_id": "nakliye-bilgi-sistemi",
+    "storage_bucket": "nakliye-bilgi-sistemi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198769536800:android:447f5717cafa6f39fef145",
+        "android_client_info": {
+          "package_name": "com.example.nakliye_bilgi_sistemi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUa-ghCpfqvxPqAbbYLvBkFXN-fMjAFkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

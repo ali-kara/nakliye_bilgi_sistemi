@@ -20,12 +20,6 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
-    },
-    {
-      "name": "Flutter (lib\\Screens\\splash_screen.dart)",
-      "type": "dart",
-      "request": "launch",
-      "program": "lib\\Screens\\splash_screen.dart"
     }
   ]
 }

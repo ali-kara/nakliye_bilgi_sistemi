@@ -8,5 +8,6 @@ const Color BACKGROUND_COLOR = Colors.white;
 const Color ANA_MENU_BUTONLAR = Color.fromRGBO(25, 118, 210, 1);
 const Color ANA_MENU_BUTONLAR_ICI = Colors.white;
 
+const Color ACIK_MAVI = Color.fromRGBO(118, 170, 222, 1);
 
 const Color GRABBER_COLOR = Colors.white;

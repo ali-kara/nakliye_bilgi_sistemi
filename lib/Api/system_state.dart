@@ -21,12 +21,12 @@ class SystemState {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['apiVersion'] = this.apiVersion;
-    data['description'] = this.description;
-    data['isActive'] = this.isActive;
-    data['activationTime'] = this.activationTime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['apiVersion'] = apiVersion;
+    data['description'] = description;
+    data['isActive'] = isActive;
+    data['activationTime'] = activationTime;
     return data;
   }
 }

@@ -29,8 +29,7 @@ class NetworkChangeManager extends INetworkChangeManager {
   void handleNetworkChange(NetworkCallBack onChange) {
     _subscription = _connectivity.onConnectivityChanged.listen((event) {
       if (!kReleaseMode) {
-        // ignore: avoid_print
-        print(event);
+        debugPrint("$event network status changed");
       }
       onChange.call(NetworkResult.checkConnectivityResult(event));
     });
@@ -58,5 +57,5 @@ enum NetworkResult {
       case ConnectivityResult.other:
         return NetworkResult.off;
     }
-      }
+  }
 }

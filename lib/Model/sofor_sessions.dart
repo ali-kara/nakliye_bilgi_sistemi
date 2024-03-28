@@ -24,13 +24,13 @@ class SoforSessions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['soforKodu'] = this.soforKodu;
-    data['ip'] = this.ip;
-    data['deviceId'] = this.deviceId;
-    data['deviceModel'] = this.deviceModel;
-    data['oturumHareket'] = this.oturumHareket;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['soforKodu'] = soforKodu;
+    data['ip'] = ip;
+    data['deviceId'] = deviceId;
+    data['deviceModel'] = deviceModel;
+    data['oturumHareket'] = oturumHareket;
     return data;
   }
 }

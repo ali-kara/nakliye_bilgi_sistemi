@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -28,13 +29,20 @@ class GeoLocationInsert {
   double? longitude;
   double? latitude;
   String? sofor_Kodu;
+  int? soforSessionId;
 
-  GeoLocationInsert({this.longitude, this.latitude, this.sofor_Kodu});
+  GeoLocationInsert({
+    this.soforSessionId,
+    this.longitude,
+    this.latitude,
+    this.sofor_Kodu,
+  });
 
   GeoLocationInsert.fromJson(Map<String, dynamic> json) {
     longitude = json['longitude'];
     latitude = json['latitude'];
     sofor_Kodu = json['sofor_Kodu'];
+    soforSessionId = json['soforSessionId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -42,6 +50,7 @@ class GeoLocationInsert {
     data['longitude'] = longitude;
     data['latitude'] = latitude;
     data['sofor_Kodu'] = sofor_Kodu;
+    data['soforSessionId'] = soforSessionId;
     return data;
   }
 }

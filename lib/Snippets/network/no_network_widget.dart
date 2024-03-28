@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 
 import '../../Global/Constants/_messages.dart';
 import 'network_change_manager.dart';
@@ -47,14 +46,20 @@ class _NoNetworkWidgetState extends State<NoNetworkWidget> with StateMixin {
       crossFadeState: _networkResult == NetworkResult.off
           ? CrossFadeState.showFirst
           : CrossFadeState.showSecond,
-      firstChild: Container(
-        height: 50,
-        color: BACKGROUND_COLOR,
-        child: const FittedBox(
-          child: Text(
-            noInternetConnectionMessage,
-            style: TextStyle(
-              color: Colors.black,
+      firstChild: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 10,
+          ),
+          height: 50,
+          color: Colors.transparent,
+          child: const FittedBox(
+            child: Text(
+              noInternetConnectionMessage,
+              style: TextStyle(
+                color: Colors.orange,
+              ),
             ),
           ),
         ),

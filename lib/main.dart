@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nakliye_bilgi_sistemi/Core/init/init_operations.dart';
 import 'package:nakliye_bilgi_sistemi/Core/init/main_build.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_colors.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_keys.dart';
@@ -10,8 +9,6 @@ import 'package:nakliye_bilgi_sistemi/Screens/splash_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-
-  // initOperations();
 
   runApp(const MyApp());
 }

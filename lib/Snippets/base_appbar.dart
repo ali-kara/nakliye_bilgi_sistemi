@@ -3,13 +3,23 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/settings.dart';
 
-class BaseAppBar extends StatelessWidget
+class BaseAppBar extends StatefulWidget
     with NavigatorManager
     implements PreferredSizeWidget {
-  final Color backgroundColor = Colors.transparent;
   final String? title;
+  final bool? showSettings;
 
-  const BaseAppBar({super.key, this.title});
+  const BaseAppBar({super.key, this.title, this.showSettings = true});
+
+  @override
+  State<BaseAppBar> createState() => _BaseAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _BaseAppBarState extends State<BaseAppBar> {
+  final Color backgroundColor = Colors.transparent;
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +46,23 @@ class BaseAppBar extends StatelessWidget
         ],
       ),
       actions: [
-        IconButton(
-            onPressed: () {
-              navigateToWidget(context, const SettingsScreen());
-            },
-            icon: const Icon(
-              Icons.settings,
-              color: Colors.black87,
-            )),
+        widget.showSettings != true
+            ? const SizedBox()
+            : IconButton(
+                onPressed: () {
+                  widget.navigateToWidget(
+                    context,
+                    const SettingsScreen(),
+                  );
+                },
+                icon: const Icon(
+                  Icons.settings,
+                  color: Colors.black87,
+                ),
+              ),
       ],
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 

@@ -1,0 +1,4 @@
+enum OturumHareket
+{
+  oturumAcildi, oturumKapandi
+}
