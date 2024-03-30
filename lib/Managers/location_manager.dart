@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
@@ -120,15 +121,15 @@ class LocationManager implements ILocationManager {
       // );
       // snackbarKey.currentState?.showSnackBar(snackBar);
 
-      // location.onLocationChanged.listen((LocationData currentLocation) {
-      //   Insert(currentLocation);
+      location.onLocationChanged.listen((LocationData currentLocation) {
+        Insert(currentLocation);
 
-      //   // WidgetsBinding.instance.addObserver(newMethod(currentLocation));
+        // WidgetsBinding.instance.addObserver(newMethod(currentLocation));
 
-      //   if (kDebugMode) {
-      //     print(currentLocation.toString());
-      //   }
-      // });
+        if (kDebugMode) {
+          print(currentLocation.toString());
+        }
+      });
     }
   }
 
