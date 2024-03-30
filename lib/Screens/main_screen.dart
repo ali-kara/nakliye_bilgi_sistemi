@@ -47,10 +47,13 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        body: _pageNo[selectedpage],
-        bottomNavigationBar: getConvexAppBar());
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+          extendBodyBehindAppBar: true,
+          body: _pageNo[selectedpage],
+          bottomNavigationBar: getConvexAppBar()),
+    );
   }
 
   Widget getConvexAppBar() {

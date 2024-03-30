@@ -175,74 +175,78 @@ class _GirisBilgiState extends State<GirisBilgi> with NavigatorManager {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const BaseAppBar(
-        showSettings: false,
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _plakalar == null ? loadingWidget() : plakaList(),
-            const SizedBox(height: 50),
-            _bolgeler == null ? loadingWidget() : bolgeList(),
-            const SizedBox(height: 50),
-            GestureDetector(
-              onTap: () async {
-                if (selectedValueBolge != null && selectedValuePlaka != null) {
-                  await saveChanges();
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: const BaseAppBar(
+          showSettings: false,
+        ),
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _plakalar == null ? loadingWidget() : plakaList(),
+              const SizedBox(height: 50),
+              _bolgeler == null ? loadingWidget() : bolgeList(),
+              const SizedBox(height: 50),
+              GestureDetector(
+                onTap: () async {
+                  if (selectedValueBolge != null &&
+                      selectedValuePlaka != null) {
+                    await saveChanges();
+
+                    navigateToWidgetReplace(
+                      context,
+                      const MainScreen(),
+                    );
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: Colors.blue[700],
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: (selectedValueBolge != null &&
+                            selectedValuePlaka != null)
+                        ? const Text(
+                            'Kaydet',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        : FittedBox(
+                            child: loadingWidget(),
+                          ),
+                  ),
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              ElevatedButton(
+                style: const ButtonStyle(),
+                onPressed: () async {
+                  await BaseSharedPreferences.clear();
+                  await LocationManager().StopService();
 
                   navigateToWidgetReplace(
                     context,
-                    const MainScreen(),
+                    const LoginPage(),
                   );
-                }
-              },
-              child: Container(
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.blue[700],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child:
-                      (selectedValueBolge != null && selectedValuePlaka != null)
-                          ? const Text(
-                              'Kaydet',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          : FittedBox(
-                              child: loadingWidget(),
-                            ),
-                ),
-              ),
-            ),
-            const Spacer(
-              flex: 2,
-            ),
-            ElevatedButton(
-              style: const ButtonStyle(),
-              onPressed: () async {
-                await BaseSharedPreferences.clear();
-                await LocationManager().StopService();
-
-                navigateToWidgetReplace(
-                  context,
-                  const LoginPage(),
-                );
-              },
-              child: const Text('Çıkış Yap'),
-            )
-          ],
+                },
+                child: const Text('Çıkış Yap'),
+              )
+            ],
+          ),
         ),
       ),
     );
