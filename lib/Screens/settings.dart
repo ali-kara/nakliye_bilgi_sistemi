@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/location_manager.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 import 'package:nakliye_bilgi_sistemi/widgets/setting_tile.dart';
 
@@ -11,7 +13,23 @@ class SettingsScreen extends StatefulWidget {
 
 class _MySettingsPageState extends State<SettingsScreen> {
   bool isDarkMode = false;
-  bool isNotificationEnabled = true;
+  bool isAutoLocationSendEnabled = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initSettings();
+  }
+
+  initSettings() async {
+    var boole = await BaseSharedPreferences.getBool("AUTO_LOCATION_SEND");
+    if (boole != null) {
+      setState(() {
+        isAutoLocationSendEnabled = boole;
+      });
+    }
+  }
 
   void darkModeChange(bool value) {
     setState(() {
@@ -21,7 +39,15 @@ class _MySettingsPageState extends State<SettingsScreen> {
 
   void notificationChange(bool value) {
     setState(() {
-      isNotificationEnabled = value;
+      isAutoLocationSendEnabled = value;
+
+      if (value) {
+        LocationManager().StartService();
+      } else {
+        LocationManager().StopService();
+      }
+
+      BaseSharedPreferences.saveBool("AUTO_LOCATION_SEND", value);
     });
   }
 
@@ -44,9 +70,9 @@ class _MySettingsPageState extends State<SettingsScreen> {
             settingsTile(
                 'Dark Tema', Icons.dark_mode, isDarkMode, darkModeChange),
             settingsTile(
-              'Bildirimler',
+              'Otomatik Konum Gönderimi',
               Icons.notifications,
-              isNotificationEnabled,
+              isAutoLocationSendEnabled,
               notificationChange,
             ),
           ],

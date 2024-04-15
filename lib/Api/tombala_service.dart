@@ -57,4 +57,25 @@ class TombalaService {
 
     return null;
   }
+
+//   Future<List<NakliyeTombala2>?> getListwithVexana() async {
+//     var parameter = TombalaGet();
+
+//     parameter.bolge = "İZMİR";
+//     parameter.plaka = "06CFM475";
+//     parameter.sofor_Kodu = "ANKİBO";
+
+//     INetworkManager networkManager = NetworkManager(
+//       options: BaseOptions(baseUrl: BASE_URL),
+//     );
+
+//     final response = await networkManager
+//         .send<NakliyeTombala2(), ServisResponse<NakliyeTombala2>>(
+//       TOMBALA_GET,
+//       parseModel: NakliyeTombala2(),
+//       method: RequestType.GET,
+//     );
+
+//     return null;
+//   }
 }

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:nakliye_bilgi_sistemi/Api/location_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_keys.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/shared_prefences.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Model/device_model.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
@@ -100,36 +101,31 @@ class LocationManager implements ILocationManager {
   @override
   Future<void> StopService() async {
     isPeriodicSendEnabled = false;
+    timerPeriodic.cancel();
   }
 
   @override
   Future<void> StartService() async {
-    bool res = await AskForPermission();
-    if (res) {
-      debugPrint('Servis başlatıldı.');
+    var boole = await BaseSharedPreferences.getBool("AUTO_LOCATION_SEND");
+    if (boole != null && boole) {
+      bool res = await AskForPermission();
+      if (res) {
+        debugPrint('Servis Başlatıldı.');
 
-      isPeriodicSendEnabled = true;
-      SendLocation();
-      await GetDeviceInfo();
+        isPeriodicSendEnabled = true;
+        SendLocation();
+        await GetDeviceInfo();
 
-      debugPrint('Servis Baslatıldı');
+        location.onLocationChanged.listen((LocationData currentLocation) {
+          Insert(currentLocation);
 
-      // const SnackBar snackBar = SnackBar(
-      //   content: Text("Servis Baslatıldı"),
-      //   backgroundColor: Colors.white,
-      //   showCloseIcon: true,
-      // );
-      // snackbarKey.currentState?.showSnackBar(snackBar);
+          // WidgetsBinding.instance.addObserver(newMethod(currentLocation));
 
-      location.onLocationChanged.listen((LocationData currentLocation) {
-        Insert(currentLocation);
-
-        // WidgetsBinding.instance.addObserver(newMethod(currentLocation));
-
-        if (kDebugMode) {
-          print(currentLocation.toString());
-        }
-      });
+          if (kDebugMode) {
+            print(currentLocation.toString());
+          }
+        });
+      }
     }
   }
 
@@ -137,7 +133,6 @@ class LocationManager implements ILocationManager {
   Future<void> Insert(LocationData location) async {
     var model = GeoLocationInsert(
       sofor_Kodu: await SoforManager.soforKodu,
-      
       latitude: location.latitude,
       longitude: location.longitude,
     );

@@ -32,7 +32,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       leading: Icon(Icons.date_range_outlined),
                       title: Text('Bugün Teslim Alınan Koli Sayısı'),
                       subtitle: Text(
-                        '15',
+                        '12',
                         style: TextStyle(
                           fontSize: 30,
                         ),

@@ -39,37 +39,27 @@ class _TombalaListesiState extends State<TombalaListesi> {
           onRefresh: () async {
             tombalaGetir();
           },
-          child: ListView(
-            children: [
-              list == null
-                  ?
-                  // Padding(
-                  //     padding: const EdgeInsets.only(
-                  //       top: 300,
-                  //     ),
-                  // child:
-                  loadingWidget()
-                  :
-                  // )
-                  _createDataTable()
-            ],
-          ),
+          child: list == null
+              ? loadingWidget()
+              : SingleChildScrollView(child: _createDataTable()),
         ),
       ),
     );
   }
 
   Widget _createDataTable() {
-    return DataTable(
-      dataRowMinHeight: 30,
-      headingTextStyle: const TextStyle(
-        color: Colors.black87,
-        fontWeight: FontWeight.w700,
-      ),
-      //columnSpacing: 10,
+    return FittedBox(
+      child: DataTable(
+        dataRowMinHeight: 30,
+        headingTextStyle: const TextStyle(
+          color: Colors.black87,
+          fontWeight: FontWeight.w700,
+        ),
+        //columnSpacing: 10,
 
-      columns: _createColumns(),
-      rows: _createRows(),
+        columns: _createColumns(),
+        rows: _createRows(),
+      ),
     );
   }
 

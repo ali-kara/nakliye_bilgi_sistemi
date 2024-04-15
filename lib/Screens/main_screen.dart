@@ -6,8 +6,8 @@ import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner_controller.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/dashboard_screen.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/in_app_messaging.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/tombala_listesi.dart';
+import 'package:nakliye_bilgi_sistemi/Widgets/custom_gridview.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> with NavigatorManager {
           // const Center(
           //     child: Text('Bu Özellik Yeni Sürümde Eklenecektir.',
           //         style: TextStyle(fontSize: 16))),
-          const InAppMessaging(),
+          const CustomGridView(),
           const MyBottomSheet()
         ];
 
