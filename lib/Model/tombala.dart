@@ -19,19 +19,20 @@ class NakliyeTombala {
   String? nakliyeci;
   String? tarih;
 
-  NakliyeTombala(
-      {this.id,
-      this.ureticiKodu,
-      this.ureticiAdiSoyadi,
-      this.ureticiIli,
-      this.soforKodu,
-      this.plaka,
-      this.bolge,
-      this.adet,
-      this.birimFiyat,
-      this.toplamFiyat,
-      this.nakliyeci,
-      this.tarih});
+  NakliyeTombala({
+    this.id,
+    this.ureticiKodu,
+    this.ureticiAdiSoyadi,
+    this.ureticiIli,
+    this.soforKodu,
+    this.plaka,
+    this.bolge,
+    this.adet,
+    this.birimFiyat,
+    this.toplamFiyat,
+    this.nakliyeci,
+    this.tarih,
+  });
 
   factory NakliyeTombala.fromJson(Map<String, dynamic> json) {
     return _$NakliyeTombalaFromJson(json);

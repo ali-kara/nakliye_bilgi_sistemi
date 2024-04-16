@@ -1,4 +1,4 @@
-enum OturumHareket
-{
-  oturumAcildi, oturumKapandi
+enum OturumHareket {
+  oturumAcildi,
+  oturumKapandi,
 }

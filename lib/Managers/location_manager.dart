@@ -68,7 +68,7 @@ class LocationManager implements ILocationManager {
         var data = await location.getLocation();
 
         var model = GeoLocationInsert(
-          sofor_Kodu: await SoforManager.soforKodu,
+          soforKodu: await SoforManager.soforKodu,
           soforSessionId: await SoforManager.sessionId,
           latitude: data.latitude,
           longitude: data.longitude,
@@ -132,7 +132,7 @@ class LocationManager implements ILocationManager {
   @override
   Future<void> Insert(LocationData location) async {
     var model = GeoLocationInsert(
-      sofor_Kodu: await SoforManager.soforKodu,
+      soforKodu: await SoforManager.soforKodu,
       latitude: location.latitude,
       longitude: location.longitude,
     );

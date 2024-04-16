@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_links.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Model/tombala.dart';
 
 import '../ViewModels/tombala_get.dart';
@@ -23,20 +24,17 @@ class TombalaService {
 
       return response.data["success"];
     } catch (e) {
-      showSnackbarError(
-        context,
-        e.toString(),
-      );
+      showSnackbarError(context, e.toString());
       return false;
     }
   }
 
   Future<List<NakliyeTombala>?> getList() async {
-    var parameter = TombalaGet();
-
-    parameter.bolge = "İZMİR";
-    parameter.plaka = "06CFM475";
-    parameter.sofor_Kodu = "ANKİBO";
+    var parameter = TombalaGet(
+      bolge: await SoforManager.bolge,
+      plaka: await SoforManager.plaka,
+      soforKodu: await SoforManager.soforKodu,
+    );
 
     var response = await _dio.post(
       TOMBALA_GET,

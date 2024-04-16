@@ -6,13 +6,14 @@ class SoforSessions {
   String? deviceModel;
   int? oturumHareket;
 
-  SoforSessions(
-      {this.id,
-      this.soforKodu,
-      this.ip,
-      this.deviceId,
-      this.deviceModel,
-      this.oturumHareket});
+  SoforSessions({
+    this.id,
+    this.soforKodu,
+    this.ip,
+    this.deviceId,
+    this.deviceModel,
+    this.oturumHareket,
+  });
 
   SoforSessions.fromJson(Map<String, dynamic> json) {
     id = json['id'];

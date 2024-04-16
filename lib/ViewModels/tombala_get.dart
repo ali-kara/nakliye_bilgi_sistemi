@@ -1,13 +1,19 @@
 class TombalaGet {
   String? bolge;
   String? plaka;
-  String? sofor_Kodu;
+  String? soforKodu;
+
+  TombalaGet({
+    this.bolge,
+    this.plaka,
+    this.soforKodu,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Bolge'] = bolge;
-    data['Plaka'] = plaka;
-    data['Sofor_Kodu'] = sofor_Kodu;
+    data['bolge'] = bolge;
+    data['plaka'] = plaka;
+    data['soforKodu'] = soforKodu;
     return data;
   }
 }
