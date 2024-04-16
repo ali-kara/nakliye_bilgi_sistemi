@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner.dart';
+import 'package:nakliye_bilgi_sistemi/Screens/manuel_barcode_insert.dart';
 import 'package:nakliye_bilgi_sistemi/Snippets/base_appbar.dart';
 
 class DashboardScreen extends StatefulWidget {

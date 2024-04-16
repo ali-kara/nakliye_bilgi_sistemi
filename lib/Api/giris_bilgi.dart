@@ -30,7 +30,7 @@ class GirisEkraniServis implements IGirisEkraniService {
       final data = response.data;
 
       if (data is Map<String, dynamic>) {
-        final res = AracPlakaResponseModel.fromJson(data);
+        final res = AracPlaka.fromJson(data);
         modelAracPlaka = res.data ?? [];
       } else if (data is List) {
         modelAracPlaka = data.map((e) => AracPlaka.fromJson(e)).toList();
@@ -48,8 +48,8 @@ class GirisEkraniServis implements IGirisEkraniService {
       final data = response.data;
 
       if (data is Map<String, dynamic>) {
-        final res = BolgeResponseModel.fromJson(data);
-        models = res.data ?? [];
+        final res = Bolge.fromJson(data);
+        models = res. ?? [];
       } else if (data is List) {
         models = data.map((e) => Bolge.fromJson(e)).toList();
       }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nakliye_bilgi_sistemi/Screens/barcode_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/giris_bilgi.dart';
 import 'package:nakliye_bilgi_sistemi/Widgets/mycardbutton.dart';
 
@@ -16,7 +15,6 @@ class CustomGridView extends StatelessWidget {
         crossAxisSpacing: 10,
       ),
       children: const [
-        MyCardButton('Barkod İşlemleri', Icons.qr_code, BarcodeScanner()),
         MyCardButton('Bilgilerim', Icons.info, GirisBilgi()),
       ],
     );
