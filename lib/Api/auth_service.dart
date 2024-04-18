@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import '../Global/Constants/_links.dart';
-import '../Model/servis_response.dart';
+import '../ViewModels/servis_response.dart';
 import '../Model/sofor.dart';
 import '../ViewModels/sofor_login.dart';
 

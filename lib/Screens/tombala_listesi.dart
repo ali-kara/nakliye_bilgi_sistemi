@@ -6,7 +6,7 @@ import '../Widgets/loading_view.dart';
 
 class TombalaListesi extends StatefulWidget {
   TombalaListesi({super.key, this.showAppBar = true});
-  bool showAppBar = true;
+  late bool showAppBar = true;
 
   @override
   State<TombalaListesi> createState() => _TombalaListesiState();
@@ -41,7 +41,9 @@ class _TombalaListesiState extends State<TombalaListesi> {
           },
           child: list == null
               ? loadingWidget()
-              : SingleChildScrollView(child: _createDataTable()),
+              : ListView(children: [
+                  _createDataTable(),
+                ]),
         ),
       ),
     );

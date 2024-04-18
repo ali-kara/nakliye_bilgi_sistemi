@@ -7,7 +7,7 @@ import 'package:nakliye_bilgi_sistemi/Model/app_version.dart';
 import 'package:nakliye_bilgi_sistemi/Api/system_state.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Constants/_links.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
-import 'package:nakliye_bilgi_sistemi/Model/servis_response.dart';
+import 'package:nakliye_bilgi_sistemi/ViewModels/servis_response.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class AppHealthCheckService {

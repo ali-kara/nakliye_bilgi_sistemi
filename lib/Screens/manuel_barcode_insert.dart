@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
 import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
@@ -70,7 +71,8 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Container(
-            padding: const EdgeInsets.all(15),
+            height: 50,
+            // padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               color: Colors.blue[700],
               border: Border.all(color: Colors.white),
@@ -78,7 +80,7 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
             ),
             child: Center(
               child: isLoading
-                  ? loadingWidget()
+                  ? FittedBox(child: loadingWidget())
                   : GestureDetector(
                       onTap: () async {
                         _changeLoading();

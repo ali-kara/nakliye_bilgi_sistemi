@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:nakliye_bilgi_sistemi/Model/geo_location.dart';
 
 import '../Global/Constants/_links.dart';
-import '../Model/servis_response.dart';
+import '../ViewModels/servis_response.dart';
 
 class LocationService {
   final Dio _dio;

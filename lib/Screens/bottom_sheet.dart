@@ -36,7 +36,7 @@ class _DraggableScrollableSheetExampleState
     extends State<DraggableScrollableSheetExample> {
   final _sheetMin = 0.1;
   final _sheetMax = 0.75;
-  final double _dragSensitivity = 600;
+  final double _dragSensitivity = 1000;
 
   @override
   Widget build(BuildContext context) {

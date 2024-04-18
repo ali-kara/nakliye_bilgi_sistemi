@@ -3,6 +3,7 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:nakliye_bilgi_sistemi/Api/tombala_service.dart';
 import 'package:nakliye_bilgi_sistemi/Core/navigation/navigation_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Global/Utils/user_messages.dart';
+import 'package:nakliye_bilgi_sistemi/Managers/sofor_manager.dart';
 import 'package:nakliye_bilgi_sistemi/Screens/bottom_sheet.dart';
 import 'package:nakliye_bilgi_sistemi/ViewModels/tombala_insert.dart';
 
@@ -39,9 +40,9 @@ class BarcodeScannerWithControllerState
     TombalaInsert tombalaInsert = TombalaInsert(
         adet: "1",
         ureticiKodu: "",
-        bolge: "İZMİR",
-        plaka: "06CFM475",
-        soforKodu: "ANKİBO",
+        bolge: await SoforManager.bolge,
+        plaka: await SoforManager.plaka,
+        soforKodu: await SoforManager.soforKodu,
         barkod: barkod);
 
     /*

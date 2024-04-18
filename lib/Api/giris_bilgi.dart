@@ -27,12 +27,13 @@ class GirisEkraniServis implements IGirisEkraniService {
     final response = await _dio.get(PLAKA_GET);
 
     if (response.statusCode == HttpStatus.ok) {
-      final data = response.data;
+      var data = response.data["data"];
 
-      if (data is Map<String, dynamic>) {
-        final res = AracPlaka.fromJson(data);
-        modelAracPlaka = res.data ?? [];
-      } else if (data is List) {
+      // if (data is Map<String, dynamic>) {
+      //   final res = AracPlaka.fromJson(data);
+      //   modelAracPlaka = res. ?? [];
+      // } else
+      if (data is List) {
         modelAracPlaka = data.map((e) => AracPlaka.fromJson(e)).toList();
       }
     }
@@ -45,12 +46,13 @@ class GirisEkraniServis implements IGirisEkraniService {
     final response = await _dio.get(BOLGE_GET);
 
     if (response.statusCode == HttpStatus.ok) {
-      final data = response.data;
+      var data = response.data["data"];
 
-      if (data is Map<String, dynamic>) {
-        final res = Bolge.fromJson(data);
-        models = res. ?? [];
-      } else if (data is List) {
+      // if (data is Map<String, dynamic>) {
+      //   final res = Bolge.fromJson(data);
+      //   models = res. ?? [];
+      // } else
+      if (data is List) {
         models = data.map((e) => Bolge.fromJson(e)).toList();
       }
     }
