@@ -1,5 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.alikara.nakliye_bilgi_sistemi">
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
@@ -35,5 +35,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- <meta-data 
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBEDal-816C1TOz9gP2ZbxFxmcurOWmBy4"/> -->
     </application>
 </manifest>

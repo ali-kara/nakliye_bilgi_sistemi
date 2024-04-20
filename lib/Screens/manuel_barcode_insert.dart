@@ -72,7 +72,7 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Container(
             height: 50,
-            // padding: const EdgeInsets.all(15),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.blue[700],
               border: Border.all(color: Colors.white),
@@ -80,12 +80,12 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
             ),
             child: Center(
               child: isLoading
-                  ? FittedBox(child: loadingWidget())
+                  ? FittedBox(fit: BoxFit.fitHeight, child: loadingWidget())
                   : GestureDetector(
                       onTap: () async {
                         _changeLoading();
                         await _insert();
-                        _changeLoading();
+                        //_changeLoading();
                       },
                       child: const Text(
                         'Koli Kaydet',

@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.nakliye_bilgi_sistemi"
+    namespace "dev.alikara.nakliye_bilgi_sistemi"
     // compileSdkVersion flutter.compileSdkVersion
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
