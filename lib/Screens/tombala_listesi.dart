@@ -55,11 +55,11 @@ class _TombalaListesiState extends State<TombalaListesi> {
       DataRow(
         cells: [
           DataCell(
-            Container(
+            SizedBox(
               width: 100,
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 3,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
@@ -68,10 +68,10 @@ class _TombalaListesiState extends State<TombalaListesi> {
               ),
             ),
           ),
-          DataCell(
+          const DataCell(
             Text('Data B'),
           ),
-          DataCell(
+          const DataCell(
             Text('Data C'),
           ),
         ],
@@ -133,14 +133,14 @@ class _TombalaListesiState extends State<TombalaListesi> {
           // A SlidableAction can have an icon and/or a label.
           SlidableAction(
             onPressed: doNothing,
-            backgroundColor: Color(0xFFFE4A49),
+            backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
             label: 'Delete',
           ),
           SlidableAction(
             onPressed: doNothing,
-            backgroundColor: Color(0xFF21B7CA),
+            backgroundColor: const Color(0xFF21B7CA),
             foregroundColor: Colors.white,
             icon: Icons.share,
             label: 'Share',
@@ -150,20 +150,20 @@ class _TombalaListesiState extends State<TombalaListesi> {
 
       // The end action pane is the one at the right or the bottom side.
       endActionPane: ActionPane(
-        motion: ScrollMotion(),
+        motion: const ScrollMotion(),
         children: [
           SlidableAction(
             // An action can be bigger than the others.
             flex: 2,
             onPressed: doNothing,
-            backgroundColor: Color(0xFF7BC043),
+            backgroundColor: const Color(0xFF7BC043),
             foregroundColor: Colors.white,
             icon: Icons.archive,
             label: 'Archive',
           ),
           SlidableAction(
             onPressed: doNothing,
-            backgroundColor: Color(0xFF0392CF),
+            backgroundColor: const Color(0xFF0392CF),
             foregroundColor: Colors.white,
             icon: Icons.save,
             label: 'Save',

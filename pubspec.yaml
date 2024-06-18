@@ -43,7 +43,7 @@ dependencies:
   hive_flutter: ^1.1.0
   location: ^6.0.1
   lottie: ^3.0.0
-  mobile_scanner: ^5.0.0
+  mobile_scanner: ^5.1.1
   package_info_plus: ^8.0.0
   shared_preferences: ^2.2.3
   # work: ^6.0.2

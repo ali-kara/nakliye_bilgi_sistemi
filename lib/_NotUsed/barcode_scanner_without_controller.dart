@@ -59,8 +59,8 @@ class BarcodeScannerWithoutControllerState
           return Stack(
             children: [
               MobileScanner(
-                fit: BoxFit.contain,
-
+                // fit: BoxFit.contain,
+                
                 //allowDuplicates: false,
                 onDetect: (barcode) {
                   setState(() {
