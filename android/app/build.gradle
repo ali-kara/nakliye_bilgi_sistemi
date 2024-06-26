@@ -25,6 +25,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "dev.alikara.nakliye_bilgi_sistemi"
+    project.ext.set("appName", "nakliye_bilgi_sistemi")
+
     // compileSdkVersion flutter.compileSdkVersion
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
@@ -52,6 +54,8 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        setProperty("archivesBaseName", "$appName-$versionName-$versionCode")
+
     }
 
     buildTypes {

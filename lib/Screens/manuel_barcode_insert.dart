@@ -84,7 +84,7 @@ class _BarcodeInsertState extends State<BarcodeInsert> {
                       onTap: () async {
                         _changeLoading();
                         await _insert();
-                        //_changeLoading();
+                        _changeLoading();
                       },
                       child: const Text(
                         'Koli Kaydet',
